@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">NutriMeter</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="drawer_menu_diary">Diary</string>
+    <string name="drawer_menu_me">Me</string>
+    <string name="drawer_menu_my_food">My Food</string>
+    <string name="drawer_menu_shopping_list">Shopping List</string>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_diary">
+
+    <fragment
+        android:id="@+id/nav_diary"
+        android:name="com.example.nutrimeter.ui.my_food.MyFoodFragment"
+        android:label="@string/drawer_menu_diary"
+        tools:layout="@layout/fragment_diary" />
+
+    <fragment
+        android:id="@+id/nav_my_food"
+        android:name="com.example.nutrimeter.ui.diary.DiaryFragment"
+        android:label="@string/drawer_menu_my_food"
+        tools:layout="@layout/fragment_my_food" />
+
+    <fragment
+        android:id="@+id/nav_me"
+        android:name="com.example.nutrimeter.ui.me.MeFragment"
+        android:label="@string/drawer_menu_me"
+        tools:layout="@layout/fragment_me" />
+
+    <fragment
+        android:id="@+id/nav_shopping_list"
+        android:name="com.example.nutrimeter.ui.shopping_list.ShoppingListFragment"
+        android:label="@string/drawer_menu_shopping_list"
+        tools:layout="@layout/fragment_shopping_list" />
+
+
+
+
+</navigation>
