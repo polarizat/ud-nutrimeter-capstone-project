@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#072A00</color>
     <color name="colorPrimaryLight">#96E386</color>
 
+    <color name="colorSecondary">#484848</color>
+
     <color name="colorDrawerIcons">#484848</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

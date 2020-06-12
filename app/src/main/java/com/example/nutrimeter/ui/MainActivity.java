@@ -12,8 +12,10 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,6 +31,8 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
 
     DrawerLayout mDrawer;
     NavigationView mNavigationView;
+    Toolbar mToolbar;
+    FloatingActionButton mFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +40,12 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
         setContentView(R.layout.activity_main);
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        mFab = findViewById(R.id.fab);
+        mFab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 
         mDrawer = findViewById(R.id.drawer_layout);
@@ -63,6 +67,22 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(mNavigationView, navController);
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller,
+                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                if(destination.getId() == R.id.nav_auth) {
+                    mToolbar.setVisibility(View.GONE);
+                    mFab.hide();
+                    //bottomNavigationView.setVisibility(View.GONE);
+                } else {
+                    mFab.show();
+                    mToolbar.setVisibility(View.VISIBLE);
+                    //bottomNavigationView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         //mNavigationView.setNavigationItemSelectedListener(this);
     }

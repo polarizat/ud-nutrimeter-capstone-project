@@ -38,7 +38,7 @@ public class Diary extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment)
-                        .navigate(R.id.nav_auth);
+                        .navigate(R.id.action_nav_diary_to_graph_nav_auth);
             }
         });
 
