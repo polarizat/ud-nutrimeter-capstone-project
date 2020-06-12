@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.shopping_list.ShoppingList">
+    tools:context=".ui.auth.Auth">
 
     <TextView
         android:layout_width="match_parent"

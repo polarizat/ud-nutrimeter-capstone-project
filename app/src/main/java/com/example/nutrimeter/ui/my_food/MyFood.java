@@ -1,4 +1,4 @@
-package com.example.nutrimeter.ui.diary;
+package com.example.nutrimeter.ui.my_food;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.nutrimeter.R;
 
-public class DiaryFragment extends Fragment {
+public class MyFood extends Fragment {
 
-    private DiaryViewModel diaryViewModel;
+    private MyFoodViewModel myFoodViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        diaryViewModel =
-                ViewModelProviders.of(this).get(DiaryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_diary, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        diaryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        myFoodViewModel =
+                ViewModelProviders.of(this).get(MyFoodViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_my_food, container, false);
+        final TextView textView = root.findViewById(R.id.text_home);
+        myFoodViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

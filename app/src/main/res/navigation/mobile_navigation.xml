@@ -3,29 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+
     app:startDestination="@+id/nav_diary">
 
     <fragment
+        android:id="@+id/nav_auth"
+        android:name="com.example.nutrimeter.ui.auth.Auth"
+        android:label="Auth"
+        tools:layout="@layout/auth_fragment" >
+        <action
+            android:id="@+id/action_nav_auth_to_nav_diary"
+            app:destination="@id/nav_diary" />
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_diary"
-        android:name="com.example.nutrimeter.ui.my_food.MyFoodFragment"
+        android:name="com.example.nutrimeter.ui.diary.Diary"
         android:label="@string/drawer_menu_diary"
-        tools:layout="@layout/fragment_diary" />
+        tools:layout="@layout/fragment_diary" >
+        <action
+            android:id="@+id/action_nav_diary_to_nav_auth"
+            app:destination="@id/nav_auth" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_my_food"
-        android:name="com.example.nutrimeter.ui.diary.DiaryFragment"
+        android:name="com.example.nutrimeter.ui.my_food.MyFood"
         android:label="@string/drawer_menu_my_food"
         tools:layout="@layout/fragment_my_food" />
 
     <fragment
         android:id="@+id/nav_me"
-        android:name="com.example.nutrimeter.ui.me.MeFragment"
+        android:name="com.example.nutrimeter.ui.me.Me"
         android:label="@string/drawer_menu_me"
         tools:layout="@layout/fragment_me" />
 
     <fragment
         android:id="@+id/nav_shopping_list"
-        android:name="com.example.nutrimeter.ui.shopping_list.ShoppingListFragment"
+        android:name="com.example.nutrimeter.ui.shopping_list.ShoppingList"
         android:label="@string/drawer_menu_shopping_list"
         tools:layout="@layout/fragment_shopping_list" />
 

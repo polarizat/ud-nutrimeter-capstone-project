@@ -1,4 +1,4 @@
-package com.example.nutrimeter.ui.shopping_list;
+package com.example.nutrimeter.ui.auth;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import com.example.nutrimeter.R;
 
-public class ShoppingListFragment extends Fragment {
+public class Auth extends Fragment {
 
-    private ShoppingListViewModel mViewModel;
+    private AuthViewModel mViewModel;
 
-    public static ShoppingListFragment newInstance() {
-        return new ShoppingListFragment();
+    public static Auth newInstance() {
+        return new Auth();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_shopping_list, container, false);
+        return inflater.inflate(R.layout.auth_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ShoppingListViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(AuthViewModel.class);
         // TODO: Use the ViewModel
     }
 
