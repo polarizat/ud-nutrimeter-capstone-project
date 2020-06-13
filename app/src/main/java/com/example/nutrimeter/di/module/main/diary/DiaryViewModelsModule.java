@@ -1,4 +1,4 @@
-package com.example.nutrimeter.di.module.diary;
+package com.example.nutrimeter.di.module.main.diary;
 
 import androidx.lifecycle.ViewModel;
 
@@ -8,7 +8,6 @@ import com.example.nutrimeter.ui.diary.DiaryViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
-import timber.log.Timber;
 
 @Module
 public abstract class DiaryViewModelsModule {

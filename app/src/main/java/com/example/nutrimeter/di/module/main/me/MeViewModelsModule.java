@@ -1,4 +1,4 @@
-package com.example.nutrimeter.di.module.me;
+package com.example.nutrimeter.di.module.main.me;
 
 import androidx.lifecycle.ViewModel;
 
@@ -9,8 +9,7 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
 
-@Module
-public abstract class MeViewModelsModule {
+@Module public abstract class MeViewModelsModule {
 
     @Binds
     @IntoMap

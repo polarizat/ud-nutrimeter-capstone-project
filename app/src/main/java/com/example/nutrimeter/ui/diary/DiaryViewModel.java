@@ -1,5 +1,7 @@
 package com.example.nutrimeter.ui.diary;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -18,10 +20,11 @@ public class DiaryViewModel extends ViewModel {
     public DiaryViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is Diary fragment");
-        Timber.d("(polarizat) ---> DiaryViewModel ----> DiaryViewModel: THA DAAA");
     }
 
     public LiveData<String> getText() {
         return mText;
     }
+
+
 }

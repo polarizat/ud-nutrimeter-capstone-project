@@ -1,4 +1,4 @@
-package com.example.nutrimeter.di.module.auth;
+package com.example.nutrimeter.di.module.main.auth;
 
 import androidx.lifecycle.ViewModel;
 
@@ -10,11 +10,12 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 
 @Module
-public abstract class AuthViewModelsModule {
+public abstract class AuthViewModelModule {
 
     @Binds
     @IntoMap
     @ViewModelKey(AuthViewModel.class)
     public abstract ViewModel bindAuthViewModel(AuthViewModel viewModel);
+
 
 }

@@ -3,7 +3,7 @@ package com.example.nutrimeter.di.component;
 import android.app.Application;
 
 import com.example.nutrimeter.NutriMeterApplication;
-import com.example.nutrimeter.di.module.ActivityBuildersModule;
+import com.example.nutrimeter.di.module.ActivityBuilderModules;
 import com.example.nutrimeter.di.module.AppModule;
 import com.example.nutrimeter.di.module.ViewModelFactoryModule;
 
@@ -21,10 +21,11 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(
         modules =  {
                 AndroidSupportInjectionModule.class,
-                ActivityBuildersModule.class,
+                ActivityBuilderModules.class,
                 AppModule.class,
                 ViewModelFactoryModule.class,
         })
+
 public interface AppComponent extends AndroidInjector<NutriMeterApplication> {
 
     @Component.Builder

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_graph"
+    app:startDestination="@id/nav_auth">
+
+    <action android:id="@+id/action_pop_out_of_auth"
+        app:popUpTo="@id/auth_graph"
+        app:popUpToInclusive="true"  />
+
+    <fragment
+        android:id="@+id/nav_auth"
+        android:name="com.example.nutrimeter.ui.auth.Auth"
+        android:label="Auth"
+        tools:layout="@layout/auth_fragment" >
+
+        <action
+            android:id="@+id/action_nav_auth_to_authEmailAndPassword"
+            app:destination="@id/authEmailAndPassword" />
+        <action
+            android:id="@+id/action_nav_auth_to_authWithGoogle"
+            app:destination="@id/authWithGoogle" />
+        <action
+            android:id="@+id/action_nav_auth_to_authAnonymous"
+            app:destination="@id/authAnonymous" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/authEmailAndPassword"
+        android:name="com.example.nutrimeter.ui.auth.AuthEmailAndPassword"
+        android:label="AuthEmailAndPassword"
+        tools:layout="@layout/auth_email_and_password">
+        <action
+            android:id="@+id/action_authEmailAndPassword_to_nav_auth"
+            app:destination="@id/nav_auth" />
+        <action
+            android:id="@+id/action_authEmailAndPassword_to_authEmailAndPasswordLogin"
+            app:destination="@id/authEmailAndPasswordLogin" />
+        <action
+            android:id="@+id/action_authEmailAndPassword_to_authEmailAndPasswordCreateAccount"
+            app:destination="@id/authEmailAndPasswordCreateAccount" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/authWithGoogle"
+        android:name="com.example.nutrimeter.ui.auth.AuthWithGoogle"
+        android:label="auth_with_google_fragmet"
+        tools:layout="@layout/auth_with_google_fragmet" >
+        <action
+            android:id="@+id/action_authWithGoogle_to_nav_auth"
+            app:destination="@id/nav_auth" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/authAnonymous"
+        android:name="com.example.nutrimeter.ui.auth.AuthAnonymous"
+        android:label="auth_anonymous_fragment"
+        tools:layout="@layout/auth_anonymous_fragment" >
+        <action
+            android:id="@+id/action_authAnonymous_to_nav_auth"
+            app:destination="@id/nav_auth" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/authEmailAndPasswordLogin"
+        android:name="com.example.nutrimeter.ui.auth.AuthEmailAndPasswordLogin"
+        tools:layout="@layout/auth_email_and_password_login"
+        android:label="AuthEmailAndPasswordLogin" >
+        <argument
+            android:name="email"
+            app:argType="string"
+            android:defaultValue=""/>
+        <action
+            android:id="@+id/action_authEmailAndPasswordLogin_to_nav_auth"
+            app:destination="@id/nav_auth" />
+        <action
+            android:id="@+id/resetPasswordAction"
+            app:destination="@id/resetPasswordDialog">
+            <argument
+                android:name="email"
+                app:argType="string"
+                android:defaultValue=""/>
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/authEmailAndPasswordCreateAccount"
+        android:name="com.example.nutrimeter.ui.auth.AuthEmailAndPasswordCreateAccount"
+        tools:layout="@layout/auth_email_and_password_create_account"
+        android:label="AuthEmailAndPasswordCreateAccount" >
+        <action
+            android:id="@+id/action_authEmailAndPasswordCreateAccount_to_nav_auth"
+            app:destination="@id/nav_auth" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/resetPasswordDialog"
+        android:name="com.example.nutrimeter.ui.auth.ResetPasswordDialog"
+        tools:layout="@layout/dialog_reset_password_email_password_auth">
+        <argument android:name="email"  app:argType="string" android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_GetEmail"
+            app:destination="@id/authEmailAndPasswordLogin">
+
+            <argument android:name="email"  app:argType="string" android:defaultValue="" />
+        </action>
+
+
+
+    </dialog>
+
+</navigation>

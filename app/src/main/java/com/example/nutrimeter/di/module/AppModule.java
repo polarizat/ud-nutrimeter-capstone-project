@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.nutrimeter.data.model.Food;
 import com.example.nutrimeter.util.Constants;
+import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Singleton;
 
@@ -24,6 +25,12 @@ public class AppModule  {
                 .baseUrl(Constants.BASE_USDA_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build() ;
+    }
+
+    @Singleton
+    @Provides
+    static FirebaseAuth provideFirebaseAuth(){
+        return FirebaseAuth.getInstance();
     }
 
 

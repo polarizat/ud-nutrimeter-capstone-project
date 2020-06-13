@@ -7,84 +7,97 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.example.nutrimeter.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.nutrimeter.common.ViewModelProviderFactory;
+import com.example.nutrimeter.databinding.ActivityMainBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.widget.Toolbar;
+
+import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
 public class MainActivity extends DaggerAppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    @Inject ViewModelProviderFactory providerFactory;
+
+    MainActivityViewModel viewModel;
+    ActivityMainBinding binding;
 
     private AppBarConfiguration mAppBarConfiguration;
-
-    DrawerLayout mDrawer;
-    NavigationView mNavigationView;
-    Toolbar mToolbar;
-    FloatingActionButton mFab;
+    NavController mNavController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        viewModel = new ViewModelProvider(this, providerFactory).get(MainActivityViewModel.class);
 
-        mToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        setupNavigation();
 
-
-        mFab = findViewById(R.id.fab);
-        mFab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
-
-        mDrawer = findViewById(R.id.drawer_layout);
-        mNavigationView = findViewById(R.id.drawer_navigationView);
-
-        initNavigationDrawer();
-    }
-
-
-    private void initNavigationDrawer(){
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_diary, R.id.nav_my_food, R.id.nav_me, R.id.nav_shopping_list)
-                .setDrawerLayout(mDrawer)
-                .build();
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(mNavigationView, navController);
-
-        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
-            @Override
-            public void onDestinationChanged(@NonNull NavController controller,
-                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if(destination.getId() == R.id.nav_auth) {
-                    mToolbar.setVisibility(View.GONE);
-                    mFab.hide();
-                    //bottomNavigationView.setVisibility(View.GONE);
-                } else {
-                    mFab.show();
-                    mToolbar.setVisibility(View.VISIBLE);
-                    //bottomNavigationView.setVisibility(View.VISIBLE);
-                }
+        viewModel.getCurrentUserLiveData().observe(this, firebaseUser -> {
+            if (firebaseUser == null){
+                mNavController.navigate(R.id.auth_graph);
             }
         });
 
-        //mNavigationView.setNavigationItemSelectedListener(this);
+        initNavigationDrawer();
+
+    }
+
+    private void setupNavigation(){
+        mNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        mNavController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller,
+                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                switch (destination.getParent().getId()) {
+                    case R.id.auth_graph:
+                        binding.toolbar.setVisibility(View.GONE);
+                        binding.fab.hide();
+                        break;
+                    default:
+                        binding.fab.show();
+                        binding.toolbar.setVisibility(View.VISIBLE);
+                        initNavigationDrawer();
+                        break;
+                }
+            }
+        });
+    }
+
+    private void initNavigationDrawer(){
+        if (mAppBarConfiguration == null){
+            setSupportActionBar(binding.toolbar);
+            // Passing each menu ID as a set of Ids because each
+            // menu should be considered as top level destinations.
+            mAppBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.nav_diary, R.id.nav_my_food, R.id.nav_me, R.id.nav_shopping_list)
+                    .setDrawerLayout(binding.drawerLayout)
+                    .build();
+
+            NavigationUI.setupActionBarWithNavController(this, mNavController, mAppBarConfiguration);
+            NavigationUI.setupWithNavController(binding.drawerNavigationView, mNavController);
+
+
+            binding.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show());
+
+            //mNavigationView.setNavigationItemSelectedListener(this);
+        }
     }
 
     @Override
@@ -97,9 +110,13 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_settings: {
-                Toast.makeText(this, "SETTINGS", Toast.LENGTH_SHORT).show();
+            case R.id.action_logout: {
+                viewModel.logout();
                 break;
+            }
+            case R.id.action_disconnect:{
+                viewModel.disconnectGoogleAccount(this);
+                mNavController.navigate(R.id.auth_graph);
             }
             default: {
                 break;
@@ -160,7 +177,7 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
 
         }
         item.setChecked(true);
-        mDrawer.closeDrawer(GravityCompat.START);
+        binding.drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }
