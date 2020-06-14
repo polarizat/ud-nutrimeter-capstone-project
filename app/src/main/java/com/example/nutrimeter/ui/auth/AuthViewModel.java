@@ -3,18 +3,12 @@ package com.example.nutrimeter.ui.auth;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.nutrimeter.data.model.User;
 import com.example.nutrimeter.data.repo.AuthRepo;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import javax.inject.Inject;
-
-import timber.log.Timber;
 
 public class AuthViewModel extends ViewModel {
 

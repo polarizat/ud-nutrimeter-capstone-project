@@ -12,8 +12,6 @@ import dagger.Provides;
 @Module
 public abstract class AuthModule {
 
-    //static FirebaseAuth firebaseAuth;
-
     @Provides
     @MainScope
     static AuthRepo providesAuthRepo(){

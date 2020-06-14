@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="food"
+            type="com.example.nutrimeter.data.model.search.SearchResultFood" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <TextView
+            android:id="@+id/search_item_description"
+            style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingTop="4dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@{food.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Broccoli, frozen, spears, unprepared " />
+
+        <TextView
+            android:id="@+id/search_item_dataType"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textSize="10sp"
+            android:text="@{food.dataType}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_item_description"
+            tools:text="Broccoli, frozen, spears, unprepared " />
+
+        <TextView
+            android:id="@+id/search_item_energy"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:maxLines="2"
+            android:paddingTop="4dp"
+            android:textStyle="bold"
+            android:paddingBottom="4dp"
+            android:text="@{food.dataType}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/search_item_proteins"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_item_dataType"
+            tools:text="320 kcal" />
+
+        <TextView
+            android:id="@+id/search_item_proteins"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:maxLines="2"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/search_item_carbs"
+            app:layout_constraintStart_toEndOf="@+id/search_item_energy"
+            app:layout_constraintTop_toBottomOf="@+id/search_item_dataType"
+            tools:text="20g proteins" />
+
+        <TextView
+            android:id="@+id/search_item_carbs"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:maxLines="2"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/search_item_fats"
+            app:layout_constraintStart_toEndOf="@+id/search_item_proteins"
+            app:layout_constraintTop_toBottomOf="@+id/search_item_dataType"
+            tools:text="35g carbs" />
+
+        <TextView
+            android:id="@+id/search_item_fats"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:maxLines="2"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/search_item_carbs"
+            app:layout_constraintTop_toBottomOf="@+id/search_item_dataType"
+            tools:text="10g fats" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

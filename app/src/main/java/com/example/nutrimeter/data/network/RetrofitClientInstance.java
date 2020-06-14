@@ -1,17 +1,18 @@
 package com.example.nutrimeter.data.network;
 
+import com.example.nutrimeter.util.UsdaUtils;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://api.nal.usda.gov";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(UsdaUtils.BASE_USDA_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
