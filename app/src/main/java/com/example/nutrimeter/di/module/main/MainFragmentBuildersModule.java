@@ -7,6 +7,7 @@ import com.example.nutrimeter.ui.auth.AuthEmailAndPasswordCreateAccount;
 import com.example.nutrimeter.ui.auth.AuthEmailAndPasswordLogin;
 import com.example.nutrimeter.ui.auth.AuthWithGoogle;
 import com.example.nutrimeter.ui.diary.Diary;
+import com.example.nutrimeter.ui.food_detail.FoodDetail;
 import com.example.nutrimeter.ui.me.Me;
 import com.example.nutrimeter.ui.my_food.MyFood;
 import com.example.nutrimeter.ui.search_food.SearchUsda;
@@ -35,6 +36,10 @@ public abstract class MainFragmentBuildersModule {
     /*SEARCH*/
     @ContributesAndroidInjector
     abstract SearchUsda contributeSearchUsdaFragment();
+
+    /*FOOD DETAILS*/
+    @ContributesAndroidInjector
+    abstract FoodDetail contributeFoodDetailFragment();
 
 
     /*DIARY*/

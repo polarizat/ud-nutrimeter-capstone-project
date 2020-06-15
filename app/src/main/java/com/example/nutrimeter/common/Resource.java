@@ -33,5 +33,9 @@ public class Resource<T> {
         return new Resource<>(Status.LOADING, data, null);
     }
 
-    public enum Status { SUCCESS, ERROR, LOADING}
+    public static <T> Resource<T> defaultReset (@Nullable T data) {
+        return new Resource<>(Status.DEFAULT, null, null);
+    }
+
+    public enum Status { SUCCESS, ERROR, LOADING, DEFAULT}
 }

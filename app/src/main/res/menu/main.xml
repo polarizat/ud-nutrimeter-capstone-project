@@ -11,4 +11,10 @@
         android:orderInCategory="100"
         android:title="Disconnect"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:title="Disconnect"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom" />
 </menu>

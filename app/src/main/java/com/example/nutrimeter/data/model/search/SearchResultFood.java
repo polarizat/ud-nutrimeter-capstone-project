@@ -3,6 +3,8 @@ package com.example.nutrimeter.data.model.search;
 import androidx.room.Ignore;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SearchResultFood {
 
@@ -139,6 +141,19 @@ public class SearchResultFood {
 
     public void setAllHighlightFields(String allHighlightFields) {
         this.allHighlightFields = allHighlightFields;
+    }
+
+    public List<AbridgedFoodNutrient> getMacros(){
+        List<AbridgedFoodNutrient> macros = new LinkedList<>();
+        for (AbridgedFoodNutrient nutrient : foodNutrients){
+            if (nutrient.getNutrientId() == 1008 ||
+                nutrient.getNutrientId() == 1003 ||
+                nutrient.getNutrientId() == 1005 ||
+                nutrient.getNutrientId() == 1004) {
+                macros.add(nutrient);
+            }
+        }
+        return macros;
     }
 
     public float getScore() {

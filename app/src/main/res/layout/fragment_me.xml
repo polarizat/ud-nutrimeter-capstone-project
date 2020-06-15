@@ -1,24 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.me.Me">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/text_slideshow"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/me_nsv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackgroundLight"
+            tools:context=".ui.me.Me">
+
+            <androidx.cardview.widget.CardView
+                android:id="@id/me_main_details_cv"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+
+                android:layout_marginEnd="24dp"
+
+                android:backgroundTint="@color/colorAccent"
+                android:visibility="visible"
+                app:cardCornerRadius="@dimen/dp_16_view_DIM"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/me_now_label">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/me_current_weight_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/me_current_weight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/me_current_weight"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:text="88 kg" />
+
+                    <TextView
+                        android:id="@+id/me_current_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:text="Current weight"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/me_goal_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Goal weight"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/me_current_weight"
+                        app:layout_constraintTop_toBottomOf="@+id/me_current_weight" />
+
+                    <TextView
+                        android:id="@+id/me_goal_weight_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/me_goal_weight"
+                        app:layout_constraintEnd_toEndOf="@+id/me_current_weight_label"
+                        app:layout_constraintTop_toTopOf="@+id/me_goal_weight"
+                        tools:text="82 kg" />
+
+                    <TextView
+                        android:id="@+id/me_current_plan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="Current plan"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/me_goal_weight"
+                        app:layout_constraintTop_toBottomOf="@+id/me_goal_weight" />
+
+                    <TextView
+                        android:id="@+id/diary_burned_kcal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Standard"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/me_current_plan"
+                        app:layout_constraintEnd_toEndOf="@+id/me_goal_weight_label"
+                        app:layout_constraintTop_toTopOf="@+id/diary_eaten_kcal"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/me_change_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:text="CHANGE"
+                        android:textColor="@color/colorAccentLight"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/me_goal_weight_label" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/me_now_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Now"
+                android:textColor="@color/colorTextOnLightSecondary"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/me_date_navigator"
+                layout="@layout/date_navigator_buttons_layout"
+                app:layout_constraintTop_toBottomOf="@+id/me_main_details_cv" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</layout>

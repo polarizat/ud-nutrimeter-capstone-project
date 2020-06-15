@@ -20,6 +20,10 @@
     <string name="auth_error_email_empty">Please type your email</string>
     <string name="auth_error_password_empty">Please enter your password</string>
     <string name="auth_error_name_empty">Please enter your name</string>
+    <string name="bottomSheet_addTo_Favorites">Favorites</string>
+    <string name="bottomSheet_addTo_Fridge">Fridge</string>
+    <string name="bottomSheet_addTo_Meal">Meal</string>
+    <string name="bottomSheet_addTo_ShoppingList">Shopping List</string>
 
 
 </resources>

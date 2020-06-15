@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.nutrimeter.di.ViewModelKey;
 import com.example.nutrimeter.ui.diary.DiaryViewModel;
+import com.example.nutrimeter.ui.food_detail.FoodDetailViewModel;
 import com.example.nutrimeter.ui.me.MeViewModel;
 import com.example.nutrimeter.ui.my_food.MyFoodViewModel;
 import com.example.nutrimeter.ui.search_food.SearchUsdaViewModel;
@@ -21,6 +22,11 @@ public abstract class ViewModelBuildersModule {
     @IntoMap
     @ViewModelKey(SearchUsdaViewModel.class)
     public abstract ViewModel bindSearchUsdaViewModel(SearchUsdaViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FoodDetailViewModel.class)
+    public abstract ViewModel bindFoodDetailViewModel(FoodDetailViewModel viewModel);
 
     @Binds
     @IntoMap

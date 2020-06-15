@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
 
-    app:startDestination="@id/searchUsda">
+    app:startDestination="@id/nav_me">
 
 
 
-    <fragment
+     <fragment
         android:id="@+id/nav_diary"
         android:name="com.example.nutrimeter.ui.diary.Diary"
         android:label="@string/drawer_menu_diary"
@@ -39,10 +39,41 @@
 
     <include app:graph="@navigation/auth_nav_graph" />
     <fragment
-        android:id="@+id/searchUsda"
+        android:id="@+id/nav_search_usda"
         android:name="com.example.nutrimeter.ui.search_food.SearchUsda"
         android:label="search_usda_fragment"
-        tools:layout="@layout/search_usda_fragment" />
+        tools:layout="@layout/search_usda_fragment" >
+        <action
+            android:id="@+id/action_nav_search_usda_to_nav_my_food"
+            app:destination="@id/nav_my_food" />
+        <action
+            android:id="@+id/action_nav_search_usda_to_foodDetail"
+            app:destination="@id/foodDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodDetail"
+        android:name="com.example.nutrimeter.ui.food_detail.FoodDetail"
+        tools:layout="@layout/fragment_food_detail"
+        android:label="FoodDetail" >
+        <action
+            android:id="@+id/action_foodDetail_to_nav_my_food"
+            app:destination="@id/nav_my_food" />
+        <action
+            android:id="@+id/action_foodDetail_to_placeholder"
+            app:destination="@id/placeholder" />
+        <action
+            android:id="@+id/action_foodDetail_to_addToBottomSheetFragment"
+            app:destination="@id/addToBottomSheetFragment" />
+    </fragment>
+
+
+    <fragment android:id="@+id/placeholder" />
+
+    <dialog
+        android:id="@+id/addToBottomSheetFragment"
+        android:name="com.example.nutrimeter.ui.food_detail.AddToBottomSheetFragment"
+        tools:layout="@layout/dialog_add_to_bs_fragment"
+        android:label="AddToBottomSheetFragment" />
 
 
 </navigation>

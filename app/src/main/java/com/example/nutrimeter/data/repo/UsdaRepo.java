@@ -36,6 +36,7 @@ public class UsdaRepo {
     /*** Gets the USDA SearchResultFood list by query*/
     public void fetchSearchedFoodList(String query, List<String> dataTypes, int pageSize, int pageNumber) {
         GetUsdaFoodService service = mRetrofit.create(GetUsdaFoodService.class);
+        searchedFoodListLiveData.setValue(new Resource<>(Resource.Status.LOADING, null, "Loading"));
 
         Call<SearchResult> call =
                 service.getSearchFoodList(query, dataTypes, pageSize, pageNumber);
@@ -54,6 +55,7 @@ public class UsdaRepo {
                 Timber.e("onFailure: on Failure%s", t.getLocalizedMessage());
             }
         }) ;
+
     }
 
 

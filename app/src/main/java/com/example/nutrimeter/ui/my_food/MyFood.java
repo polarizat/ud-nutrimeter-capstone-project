@@ -4,32 +4,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.example.nutrimeter.R;
+import com.example.nutrimeter.common.BaseFragment;
+import com.example.nutrimeter.databinding.FragmentMyFoodBinding;
 
-public class MyFood extends Fragment {
+public class MyFood extends BaseFragment {
 
-    private MyFoodViewModel myFoodViewModel;
+    private MyFoodViewModel viewModel;
+    private FragmentMyFoodBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        myFoodViewModel =
-                ViewModelProviders.of(this).get(MyFoodViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_my_food, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        myFoodViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        binding = FragmentMyFoodBinding.inflate(getLayoutInflater());
+        viewModel = getViewModel(MyFoodViewModel.class);
+
+
+
+        return binding.getRoot();
     }
 }

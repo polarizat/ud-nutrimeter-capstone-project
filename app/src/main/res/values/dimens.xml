@@ -1,10 +1,124 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+
+<!--    GENERAL -->
+<!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="app_bar_height">56dp</dimen>
+    <dimen name="status_bar_height">24dp</dimen>
+
+<!-- ACTIVITY MARGINS -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_MARGIN">24dp</dimen>
+    <dimen name="activity_veritcal_MARGIN">24dp</dimen>
 
+<!-- FRAGMENT MARGINS -->
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_vertical_margin">16dp</dimen>
+    <dimen name="fragment_horizontal_MARGIN">24dp</dimen>
+    <dimen name="fragment_veritcal_MARGIN">24dp</dimen>
+
+<!-- NAVIGATION DRAWER -->
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">148dp</dimen>
 
+<!-- FAB -->
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_MARGIN">24dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+
+<!-- TEXT dimensions - MATERIAL specs -->
+    <dimen name="sp_10_text_OVERLINE">10sp</dimen>
+    <dimen name="sp_12_text_Caption">12sp</dimen>
+    <dimen name="sp_14_text_BUTTON">14sp</dimen>
+    <dimen name="sp_14_text_Body2">14sp</dimen>
+    <dimen name="sp_16_text_Body1">16sp</dimen>
+    <dimen name="sp_14_text_Subtitle2">14sp</dimen>
+    <dimen name="sp_16_text_Subtitle1">16sp</dimen>
+    <dimen name="sp_20_text_H6">20sp</dimen>
+    <dimen name="sp_24_text_H5">24sp</dimen>
+    <dimen name="sp_34_text_H4">34sp</dimen>
+    <dimen name="sp_48_text_H3">48sp</dimen>
+    <dimen name="sp_60_text_H2">60sp</dimen>
+    <dimen name="sp_96_text_H1">96sp</dimen>
+
+<!-- MARGINS  -->
+    <dimen name="dp_0_MARGIN">0dp</dimen>
+    <dimen name="dp_4_margin">4dp</dimen>
+    <dimen name="dp_8_MARGIN">8dp</dimen>
+    <dimen name="dp_12_margin">12dp</dimen>
+    <dimen name="dp_16_MARGIN">16dp</dimen>
+    <dimen name="dp_20_margin">20dp</dimen>
+    <dimen name="dp_24_MARGIN">24dp</dimen>
+    <dimen name="dp_28_margin">28dp</dimen>
+    <dimen name="dp_32_MARGIN">32dp</dimen>
+    <dimen name="dp_36_margin">36dp</dimen>
+    <dimen name="dp_40_MARGIN">40dp</dimen>
+    <dimen name="dp_44_margin">44dp</dimen>
+    <dimen name="dp_48_MARGIN">48dp</dimen>
+    <dimen name="dp_52_margin">52dp</dimen>
+    <dimen name="dp_56_MARGIN">56dp</dimen>
+    <dimen name="dp_60_margin">60dp</dimen>
+    <dimen name="dp_64_MARGIN">64dp</dimen>
+    <dimen name="dp_68_margin">68dp</dimen>
+    <dimen name="dp_72_MARGIN">72dp</dimen>
+    <dimen name="dp_80_MARGIN">80dp</dimen>
+    <dimen name="dp_120_MARGIN">120dp</dimen>
+    <dimen name="dp_160_MARGIN">160dp</dimen>
+
+<!--    views DIMENSIONS-->
+    <dimen name="dp_0_view_DIM">0dp</dimen>
+    <dimen name="dp_4_view_DIM">4dp</dimen>
+    <dimen name="dp_8_view_DIM">8dp</dimen>
+    <dimen name="dp_16_view_DIM">16dp</dimen>
+    <dimen name="dp_20_view_DIM">20dp</dimen>
+    <dimen name="dp_24_view_DIM">24dp</dimen>
+    <dimen name="dp_32_view_DIM">32dp</dimen>
+    <dimen name="dp_40_view_DIM">40dp</dimen>
+    <dimen name="dp_56_view_DIM">56dp</dimen>
+    <dimen name="dp_64_view_DIM">64dp</dimen>
+    <dimen name="dp_72_view_DIM">72dp</dimen>
+    <dimen name="dp_80_view_DIM">80dp</dimen>
+    <dimen name="dp_88_view_DIM">88dp</dimen>
+    <dimen name="dp_96_view_DIM">96dp</dimen>
+    <dimen name="dp_104_view_DIM">104dp</dimen>
+    <dimen name="dp_112_view_DIM">112dp</dimen>
+    <dimen name="dp_120_view_DIM">120dp</dimen>
+    <dimen name="dp_180_view_DIM">180dp</dimen>
+    <dimen name="dp_240_view_DIM">240dp</dimen>
+
+<!-- ICONS  -->
+    <dimen name="dp_16_ICON">16dp</dimen>
+    <dimen name="dp_24_ICON">24dp</dimen>
+    <dimen name="dp_32_ICON">32dp</dimen>
+    <dimen name="dp_40_ICON">40dp</dimen>
+    <dimen name="dp_48_ICON">48dp</dimen>
+    <dimen name="dp_56_ICON">56dp</dimen>
+    <dimen name="dp_64_ICON">64dp</dimen>
+    <dimen name="dp_72_ICON">72dp</dimen>
+
+<!--    Horizontal Progress Bar -->
+    <dimen name="hpb_height">@dimen/dp_24_view_DIM</dimen>
+    <dimen name="hpb_corners_radius">16dp</dimen>
+
+<!--   Corner Radius -->
+    <dimen name="dp_4_corner_radius">4dp</dimen>
+    <dimen name="dp_8_corner_radius">8dp</dimen>
+    <dimen name="dp_16_corner_radius">16dp</dimen>
+
+<!--    Elevations   -->
+    <dimen name="elevation_Nav_drawer">4dp</dimen>
+    <dimen name="elevation_App_bar">8dp</dimen>
+    <dimen name="elevation_card_1dp">1dp</dimen>
+    <dimen name="elevation_card_2dp">2dp</dimen>
+    <dimen name="elevation_card_3dp">3dp</dimen>
+    <dimen name="elevation_card_4dp">4dp</dimen>
+    <dimen name="elevation_card_5dp">5dp</dimen>
+    <dimen name="elevation_card_6dp">6dp</dimen>
+    <dimen name="elevation_card_7dp">7dp</dimen>
+    <dimen name="elevation_card_8dp">8dp</dimen>
+    <dimen name="elevation_FAB">16dp</dimen>
+    <dimen name="elevation_Button">16dp</dimen>
+    <dimen name="elevation_Dialog">16dp</dimen>
+
 </resources>

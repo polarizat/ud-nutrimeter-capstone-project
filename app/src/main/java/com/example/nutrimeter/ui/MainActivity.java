@@ -1,23 +1,15 @@
 package com.example.nutrimeter.ui;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
 import android.widget.Toast;
-
-import com.example.nutrimeter.R;
-import com.example.nutrimeter.common.ViewModelProviderFactory;
-import com.example.nutrimeter.databinding.ActivityMainBinding;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -25,6 +17,12 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.example.nutrimeter.R;
+import com.example.nutrimeter.common.ViewModelProviderFactory;
+import com.example.nutrimeter.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -39,6 +37,8 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
     private AppBarConfiguration mAppBarConfiguration;
     NavController mNavController;
 
+    Menu mMenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +47,12 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
         viewModel = new ViewModelProvider(this, providerFactory).get(MainActivityViewModel.class);
 
         setupNavigation();
-
+//        NavController navController = NavHostFragment.findNavController(this);
+//        NavigationUI.setupWithNavController(toolbar, navController);
         viewModel.getCurrentUserLiveData().observe(this, firebaseUser -> {
             if (firebaseUser == null){
                 mNavController.navigate(R.id.auth_graph);
+
             }
         });
 
@@ -69,11 +71,25 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
                         binding.toolbar.setVisibility(View.GONE);
                         binding.fab.hide();
                         break;
+
+                        //Toast.makeText(MainActivity.this, "NOW DO SOMETHING", Toast.LENGTH_SHORT).show();
                     default:
                         binding.fab.show();
                         binding.toolbar.setVisibility(View.VISIBLE);
                         initNavigationDrawer();
                         break;
+                }
+                switch (destination.getId()){
+                    case R.id.nav_search_usda:
+                        binding.searchSv.setVisibility(View.VISIBLE);
+                        mMenu.findItem(R.id.action_search).setVisible(false);
+                        break;
+                    default: {
+                        binding.searchSv.setVisibility(View.GONE);
+
+                        break;
+                    }
+
                 }
             }
         });
@@ -104,6 +120,7 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        mMenu = menu;
         return true;
     }
 
@@ -117,6 +134,9 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
             case R.id.action_disconnect:{
                 viewModel.disconnectGoogleAccount(this);
                 mNavController.navigate(R.id.auth_graph);
+            }
+            case R.id.action_search: {
+                mNavController.navigate(R.id.nav_search_usda);
             }
             default: {
                 break;
