@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.my_food.MyFood">
+
+
+        ---- CHIPS - SELECTED FILTERS ---
+        <HorizontalScrollView
+            android:id="@+id/active_chips_container"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            tools:background="@color/colorPrimary"
+            android:background="@color/white">
+
+            --- CHIPS GROUP ---
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/group_filter_chips"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp">
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+        VIEW PAGER ---v
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/my_food_viewPager"
+            tools:background="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </androidx.viewpager.widget.ViewPager>
+
+
+    </LinearLayout>
+</layout>
