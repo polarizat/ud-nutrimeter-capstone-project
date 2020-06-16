@@ -1,32 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="nutrient"
+            type="com.example.nutrimeter.data.model.Nutrient" />
+        <variable
+            name="quantityMultiplier"
+            type="Float" />
+        <variable
+            name="decimalFormat"
+            type="java.text.DecimalFormat" />
+    </data>
 
-    <TextView
-        android:id="@+id/minerals1Name"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calcium"
-        android:textColor="@color/colorTextLight"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="58dp" />
+        android:paddingBottom="@dimen/dp_8_MARGIN">
 
-    <TextView
-        android:id="@+id/minerals1short"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:text="Ca"
-        android:textColor="@color/colorTextDarkSecondary"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/minerals1Name" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/nutrientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{nutrient.nutrientName}"
+
+            android:textColor="@color/colorTextLight"
+            android:textSize="16sp"
+
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.181"
+            tools:text="Calcium" />
+
+        <TextView
+            android:id="@+id/nutrienQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.valueOf(decimalFormat.format(nutrient.value * quantityMultiplier)) + " " + nutrient.unitName}'
+            android:textColor="@color/colorTextLight"
+            android:textSize="16sp"
+
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0.075 mg" />
+
+        <TextView
+            android:id="@+id/nutrientRDA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorTextDarkSecondary"
+            android:textSize="14sp"
+
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/nutrienQuantity"
+
+            app:layout_constraintTop_toBottomOf="@+id/nutrienQuantity"
+            tools:text="0.2% DZA" />
+
+        <View
+            android:id="@+id/nutrientDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            android:alpha="0.2"
+            android:layout_marginTop="@dimen/dp_8_MARGIN"
+            app:layout_constraintTop_toBottomOf="@+id/nutrientRDA" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

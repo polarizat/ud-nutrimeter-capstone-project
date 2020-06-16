@@ -1,7 +1,7 @@
 package com.example.nutrimeter.data.network;
 
 import com.example.nutrimeter.BuildConfig;
-import com.example.nutrimeter.data.model.search.SearchResult;
+import com.example.nutrimeter.data.model.usda.search.SearchResult;
 import com.example.nutrimeter.util.UsdaUtils;
 
 import java.util.List;

@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.nutrimeter.common.Resource;
-import com.example.nutrimeter.data.model.search.SearchResultFood;
+import com.example.nutrimeter.data.model.Food;
+import com.example.nutrimeter.data.model.usda.search.SearchResultFood;
 import com.example.nutrimeter.data.repo.UsdaRepo;
 import com.example.nutrimeter.util.UsdaUtils;
 
@@ -35,5 +36,9 @@ public class SearchUsdaViewModel extends ViewModel {
                 UsdaUtils.getListOfDataTypes(
                         UsdaUtils.SearchDataType.SR_LEGACY),
                 25, 2);
+    }
+
+    public void setSelectedFood(Food food){
+        usdaRepo.setSelectedFood(food);
     }
 }

@@ -14,10 +14,10 @@ import com.example.nutrimeter.data.model.room.MealWithFoods;
 import com.example.nutrimeter.data.model.room.ProgressEntryMealCrossRef;
 import com.example.nutrimeter.data.model.room.ProgressEntryWithMeals;
 import com.example.nutrimeter.data.model.room.ProgressWithMealsAndFoods;
-import com.example.nutrimeter.data.model.room.entity.Food;
-import com.example.nutrimeter.data.model.room.entity.Meal;
+import com.example.nutrimeter.data.model.room.entity.FoodEntity;
+import com.example.nutrimeter.data.model.room.entity.MealEntity;
 import com.example.nutrimeter.data.model.room.entity.ProgressEntry;
-import com.example.nutrimeter.data.model.room.entity.User;
+import com.example.nutrimeter.data.model.room.entity.UserEntity;
 
 import java.util.List;
 
@@ -29,22 +29,22 @@ public interface FoodsDao {
      *
      **/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertFoods(Food... foods);
+    void insertFoods(FoodEntity... foodEntities);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertFood(Food foods);
+    void insertFood(FoodEntity foods);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertMeals(Meal... meals);
+    void insertMeals(MealEntity... mealEntities);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertMeal(Meal meal);
+    void insertMeal(MealEntity mealEntity);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertProgressEntry(ProgressEntry progressEntry);
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    void insertUser(User user);
+    void insertUser(UserEntity userEntity);
 
 
 
@@ -53,13 +53,13 @@ public interface FoodsDao {
      *
      **/
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateUser(User user);
+    void updateUser(UserEntity userEntity);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateFood(Food meal);
+    void updateFood(FoodEntity meal);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateMeal(Meal meal);
+    void updateMeal(MealEntity mealEntity);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateProgressEntry(ProgressEntry progressEntry);
@@ -71,18 +71,18 @@ public interface FoodsDao {
      * Queries
      *
      **/
-    @Query("SELECT * FROM foods WHERE foodId = :id")
-    LiveData<Food> getFood(int id);
+    @Query("SELECT * FROM foodEntities WHERE foodId = :id")
+    LiveData<FoodEntity> getFood(int id);
 
 
-    @Query("SELECT * FROM foods WHERE isInFridge = 1")
-    public LiveData<List<Food>> loadFoodsFromFridge();
+    @Query("SELECT * FROM foodEntities WHERE isInFridge = 1")
+    LiveData<List<FoodEntity>> loadFoodsFromFridge();
 
-    @Query("SELECT * FROM foods WHERE isInShoppingList = 1")
-    public LiveData<List<Food>> loadFoodsFromShoppingList();
+    @Query("SELECT * FROM foodEntities WHERE isInShoppingList = 1")
+    LiveData<List<FoodEntity>> loadFoodsFromShoppingList();
 
-    @Query("SELECT * FROM foods WHERE isInFavorite = 1")
-    public LiveData<List<Food>> loadFoodsFromFavorites();
+    @Query("SELECT * FROM foodEntities WHERE isInFavorite = 1")
+    LiveData<List<FoodEntity>> loadFoodsFromFavorites();
 
 
 
@@ -91,16 +91,16 @@ public interface FoodsDao {
      *
      * */
     @Transaction
-    @Query("SELECT * FROM meals")
-    public LiveData<List<MealWithFoods>> getMealWithFoods();
+    @Query("SELECT * FROM mealEntities")
+    LiveData<List<MealWithFoods>> getMealWithFoods();
 
     @Transaction
     @Query("SELECT * FROM progress_entries")
-    public LiveData<List<ProgressEntryWithMeals>> getProgressWithMeals();
+    LiveData<List<ProgressEntryWithMeals>> getProgressWithMeals();
 
     @Transaction
     @Query("SELECT * FROM progress_entries")
-    public LiveData<List<ProgressWithMealsAndFoods>> getProgressWithMealsAndFoods();
+    LiveData<List<ProgressWithMealsAndFoods>> getProgressWithMealsAndFoods();
 
 
 
@@ -110,13 +110,13 @@ public interface FoodsDao {
      *
      **/
     @Delete
-    void deleteFood(Food food);
+    void deleteFood(FoodEntity foodEntity);
 
     @Delete
-    void deleteMeal(Meal meal);
+    void deleteMeal(MealEntity mealEntity);
 
     @Delete
-    void deleteMeals(Meal... meals);
+    void deleteMeals(MealEntity... mealEntities);
 
 
 

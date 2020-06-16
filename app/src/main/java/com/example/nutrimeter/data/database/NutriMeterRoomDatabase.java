@@ -5,16 +5,16 @@ import androidx.room.RoomDatabase;
 
 import com.example.nutrimeter.data.model.room.MealFoodCrossRef;
 import com.example.nutrimeter.data.model.room.ProgressEntryMealCrossRef;
-import com.example.nutrimeter.data.model.room.entity.Food;
-import com.example.nutrimeter.data.model.room.entity.Meal;
+import com.example.nutrimeter.data.model.room.entity.FoodEntity;
+import com.example.nutrimeter.data.model.room.entity.MealEntity;
 import com.example.nutrimeter.data.model.room.entity.ProgressEntry;
-import com.example.nutrimeter.data.model.room.entity.User;
+import com.example.nutrimeter.data.model.room.entity.UserEntity;
 
 @Database(
         entities = {
-            Food.class,
-            Meal.class,
-            User.class,
+            FoodEntity.class,
+            MealEntity.class,
+            UserEntity.class,
             ProgressEntry.class,
             MealFoodCrossRef.class,
             ProgressEntryMealCrossRef.class},

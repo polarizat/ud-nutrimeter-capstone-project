@@ -1,20 +1,20 @@
 package com.example.nutrimeter.di.module.main;
 
-import com.example.nutrimeter.data.repo.AuthRepo;
 import com.example.nutrimeter.data.repo.UsdaRepo;
 
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 @Module
 public class MainModule {
 
-    Retrofit retrofit;
 
     @Provides
     @MainScope
-    UsdaRepo providesUsdaRepo(){
+    UsdaRepo providesUsdaRepo(Retrofit retrofit){
+        Timber.d("(polarizat) ---> MainModule ----> providesUsdaRepo: RETROFIT");
         return new UsdaRepo(retrofit);
     }
 

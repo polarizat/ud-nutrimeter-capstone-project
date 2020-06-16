@@ -1,6 +1,6 @@
 package com.example.nutrimeter.di.module;
 
-import com.example.nutrimeter.data.network.RetrofitClientInstance;
+import com.example.nutrimeter.util.UsdaUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Singleton;
@@ -8,6 +8,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import timber.log.Timber;
 
 @Module
 public class AppModule  {
@@ -25,7 +27,11 @@ public class AppModule  {
     @Singleton
     @Provides
     static Retrofit provideRetrofitInstance(){
-        return RetrofitClientInstance.getRetrofitInstance();
+        Timber.d("(polarizat) ---> AppModule ----> provideRetrofitInstance: RETROFIT");
+        return new Retrofit.Builder()
+                .baseUrl(UsdaUtils.BASE_USDA_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
 

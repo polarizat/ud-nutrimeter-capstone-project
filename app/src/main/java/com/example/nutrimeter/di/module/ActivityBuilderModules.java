@@ -1,6 +1,7 @@
 package com.example.nutrimeter.di.module;
 
 import com.example.nutrimeter.di.module.main.MainFragmentBuildersModule;
+import com.example.nutrimeter.di.module.main.MainModule;
 import com.example.nutrimeter.di.module.main.MainScope;
 import com.example.nutrimeter.di.module.main.MainViewModelModule;
 import com.example.nutrimeter.di.module.main.auth.AuthModule;
@@ -16,9 +17,12 @@ public abstract class ActivityBuilderModules {
 
     @MainScope
     @ContributesAndroidInjector(modules = {
+            MainModule.class,
             MainViewModelModule.class,
+
             MainFragmentBuildersModule.class,
             ViewModelBuildersModule.class,
+
             AuthViewModelModule.class,
             AuthModule.class,
     })

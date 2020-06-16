@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.nutrimeter.R;
 import com.example.nutrimeter.common.BaseFragment;
-import com.example.nutrimeter.data.model.search.SearchResultFood;
+import com.example.nutrimeter.data.model.Food;
+import com.example.nutrimeter.data.model.usda.search.SearchResultFood;
 import com.example.nutrimeter.databinding.SearchUsdaFragmentBinding;
 
 import java.util.LinkedList;
@@ -61,16 +63,24 @@ public class SearchUsda extends BaseFragment implements SearchedFoodAdapter.List
         viewModel.getSearchedFoodListLiveData().observe(getViewLifecycleOwner(), listResource -> {
             switch (listResource.status){
                 case SUCCESS:
-                    binding.searchLoadingPb.progressBar.setVisibility(View.INVISIBLE);
-                    mAdapter.setNewList(listResource.data);
+                    binding.searchLoadingPb.getRoot().setVisibility(View.INVISIBLE);
+                    if (listResource.data != null && listResource.data.size() > 0){
+                        binding.searchRv.setVisibility(View.VISIBLE);
+                        mAdapter.setNewList(listResource.data);
+                    } else {
+                        Toast.makeText(getContext(), "No matching foodEntities were found! Try something else!", Toast.LENGTH_SHORT).show();
+                    }
 
                     break;
                 case ERROR:
-                    binding.searchLoadingPb.progressBar.setVisibility(View.INVISIBLE);
+                    binding.searchLoadingPb.getRoot().setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "An error has occurred! Check your internet connection and try again!", Toast.LENGTH_SHORT).show();
+
                     // TODO
                     break;
                 case LOADING:
-                    binding.searchLoadingPb.progressBar.setVisibility(View.VISIBLE);
+                    binding.searchRv.setVisibility(View.INVISIBLE);
+                    binding.searchLoadingPb.getRoot().setVisibility(View.VISIBLE);
                     break;
             }
         });
@@ -92,7 +102,8 @@ public class SearchUsda extends BaseFragment implements SearchedFoodAdapter.List
     }
 
     @Override
-    public void onSearchedFoodClick(SearchResultFood food) {
+    public void onSearchedFoodClick(SearchResultFood searchResultFood) {
+        viewModel.setSelectedFood(new Food(searchResultFood));
         Navigation.findNavController(getView()).navigate(R.id.action_nav_search_usda_to_foodDetail);
     }
 }

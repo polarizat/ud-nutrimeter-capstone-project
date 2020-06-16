@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="food"
-            type="com.example.nutrimeter.data.model.search.SearchResultFood" />
+            name="searchedFood"
+            type="com.example.nutrimeter.data.model.usda.search.SearchResultFood" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:maxLines="2"
             android:paddingTop="4dp"
-            android:text="@{food.description}"
+            android:text="@{searchedFood.description}"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/food_item_list_more"
@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:paddingStart="@dimen/dp_16_MARGIN"
+            android:paddingEnd="@dimen/dp_0_MARGIN"
             android:src="@drawable/ic_baseline_more_horiz_24"
             app:layout_constraintBottom_toBottomOf="@+id/search_item_description"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +54,7 @@
             android:maxLines="2"
 
             android:textSize="12sp"
-            android:text="@{food.dataType}"
+            android:text="@{searchedFood.dataType}"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,10 +1,12 @@
 package com.example.nutrimeter.data.repo;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.nutrimeter.common.Resource;
-import com.example.nutrimeter.data.model.search.SearchResult;
-import com.example.nutrimeter.data.model.search.SearchResultFood;
+import com.example.nutrimeter.data.model.Food;
+import com.example.nutrimeter.data.model.usda.search.SearchResult;
+import com.example.nutrimeter.data.model.usda.search.SearchResultFood;
 import com.example.nutrimeter.data.network.GetUsdaFoodService;
 
 import java.util.List;
@@ -22,11 +24,13 @@ public class UsdaRepo {
     Retrofit mRetrofit;
 
     MutableLiveData<Resource<List<SearchResultFood>>> searchedFoodListLiveData;
+    MutableLiveData<Food> selectedFood;
 
     @Inject
     public UsdaRepo(Retrofit retrofit){
         mRetrofit = retrofit;
         searchedFoodListLiveData = new MutableLiveData<>();
+        selectedFood = new MutableLiveData<>();
     }
 
     public MutableLiveData<Resource<List<SearchResultFood>>> getSearchedFoodListLiveData() {
@@ -47,7 +51,8 @@ public class UsdaRepo {
 
                 SearchResult searchResult = response.body();
                 Timber.d("(polarizat) ---> UsdaRepo ----> onResponse: URL %s", call.request().url().toString());
-                searchedFoodListLiveData.setValue(new Resource<>(Resource.Status.SUCCESS, response.body().getFoods(), response.message()));
+                Timber.d("(polarizat) ---> UsdaRepo ----> onResponse: THE MESSAGE IS %s", response.message());
+                searchedFoodListLiveData.setValue(new Resource<>(Resource.Status.SUCCESS, searchResult.getFoods(), response.message()));
             }
             @Override
             public void onFailure(Call<SearchResult> call, Throwable t) {
@@ -59,7 +64,14 @@ public class UsdaRepo {
     }
 
 
+    public void setSelectedFood(Food food) {
+        if (selectedFood == null){
+            selectedFood = new MutableLiveData<>();
+        }
+        selectedFood.setValue(food);
+    }
 
-
-
+    public LiveData<Food> getSelectedFood() {
+        return selectedFood;
+    }
 }

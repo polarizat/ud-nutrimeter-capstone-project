@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/box_rounded_corners_filled"
+    android:background="@drawable/box_white_borderless_radius16"
     android:orientation="vertical">
 
     <TextView

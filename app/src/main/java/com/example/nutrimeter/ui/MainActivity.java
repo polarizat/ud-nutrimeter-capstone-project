@@ -73,16 +73,21 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
                         break;
 
                         //Toast.makeText(MainActivity.this, "NOW DO SOMETHING", Toast.LENGTH_SHORT).show();
-                    default:
+                    case R.id.main_navigation:
                         binding.fab.show();
                         binding.toolbar.setVisibility(View.VISIBLE);
+                        binding.logoAppBar.setVisibility(View.VISIBLE);
                         initNavigationDrawer();
+                        break;
+
+                    default:
                         break;
                 }
                 switch (destination.getId()){
                     case R.id.nav_search_usda:
                         binding.searchSv.setVisibility(View.VISIBLE);
-                        mMenu.findItem(R.id.action_search).setVisible(false);
+                        binding.logoAppBar.setVisibility(View.INVISIBLE);
+                        //mMenu.findItem(R.id.action_search).setVisible(false); //TODO For debug only
                         break;
                     default: {
                         binding.searchSv.setVisibility(View.GONE);

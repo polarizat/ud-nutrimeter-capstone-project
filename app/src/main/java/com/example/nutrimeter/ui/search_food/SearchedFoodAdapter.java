@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nutrimeter.data.model.search.AbridgedFoodNutrient;
-import com.example.nutrimeter.data.model.search.SearchResultFood;
+import com.example.nutrimeter.data.model.usda.search.AbridgedFoodNutrient;
+import com.example.nutrimeter.data.model.usda.search.SearchResultFood;
 import com.example.nutrimeter.databinding.ListItemSearchedFoodBinding;
 
 import java.util.List;
@@ -68,7 +68,7 @@ public class SearchedFoodAdapter extends RecyclerView.Adapter<SearchedFoodAdapte
             }
 
             void bind (SearchResultFood food) {
-                binding.setFood(food);
+                binding.setSearchedFood(food);
                 List<AbridgedFoodNutrient> macros = food.getMacros();
                 for (AbridgedFoodNutrient nutrient : macros){
                     if (nutrient.getNutrientId() == 1008)

@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/auth_loading_layout_nutrimeter"/>
+    <include layout="@layout/loading_layout_nutrimeter"/>
 
 </FrameLayout>

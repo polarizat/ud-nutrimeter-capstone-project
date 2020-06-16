@@ -23,39 +23,63 @@
             tools:context=".ui.MainActivity">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:theme="@style/AppTheme.AppBarOverlay">
+                style="ActionBarTheme">
 
                 <androidx.appcompat.widget.Toolbar
 
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/white"
                     app:popupTheme="@style/AppTheme.PopupOverlay">
 
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search_sv"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_40_view_DIM"
-                        android:background="@drawable/box_rounded_corners_border"
-                        android:queryBackground="@android:color/transparent"
-                        android:visibility="gone"
-                        android:layout_marginEnd="8dp"
-                        app:closeIcon="@drawable/ic_baseline_close_24"
-                        app:iconifiedByDefault="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:queryBackground="@color/transparent"
-                        app:queryHint="What do you need?" />
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/logo_appBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#FFFFFF"
+                            app:layout_anchor="@+id/appBarLayout"
+                            android:layout_gravity="center"
+                            app:layout_anchorGravity="center"
+                            app:srcCompat="@drawable/ic_logo_full" />
+
+
+
+                        <androidx.appcompat.widget.SearchView
+                            android:id="@+id/search_sv"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_40_view_DIM"
+                            android:layout_marginEnd="8dp"
+                            android:visibility="gone"
+                            tools:visibility="visible"
+                            app:searchIcon="@null"
+                            android:focusedByDefault="true"
+                            app:goIcon="@drawable/ic_search"
+                            android:paddingStart="-8dp"
+                            android:paddingEnd="-16dp"
+                            android:layout_gravity="center"
+                            app:iconifiedByDefault="false"
+                            app:closeIcon="@drawable/ic_baseline_close_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:queryBackground="@color/transparent"
+                            app:queryHint="What do you need?" />
+
+                    </FrameLayout>
 
                 </androidx.appcompat.widget.Toolbar>
 
                 TAB LAYOUT ---v
+
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
@@ -65,7 +89,7 @@
                     app:tabIndicatorColor="@color/colorSecondary"
                     app:tabIndicatorHeight="2dp"
                     app:tabSelectedTextColor="@color/colorSecondary"
-                    app:tabTextColor="@color/colorTextOnDark"/>
+                    app:tabTextColor="@color/colorTextOnDark" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -90,6 +114,7 @@
                 android:elevation="6dp"
                 app:fabSize="normal"
                 app:srcCompat="@drawable/ic_baseline_add_24" />
+
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
