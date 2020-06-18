@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_auth_config"
+    app:startDestination="@id/selectGenderFragment">
+
+    <action android:id="@+id/action_pop_out_of_auth_config"
+        app:popUpTo="@id/navigation_auth_config"
+        app:popUpToInclusive="true"  />
+
+    <fragment
+        android:id="@+id/selectGenderFragment"
+        android:name="com.example.nutrimeter.ui.auth.firstConfig.SelectGenderFragment"
+        tools:layout="@layout/auth_config_gender"
+        android:label="SelectGenderFragment" >
+        <action
+            android:id="@+id/action_selectGenderFragment_to_enterAgeFragment"
+            app:destination="@id/enterAgeFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterHeightFragment"
+        android:name="com.example.nutrimeter.ui.auth.firstConfig.EnterHeightFragment"
+        tools:layout="@layout/auth_config_height"
+        android:label="EnterHeightFragment" >
+        <action
+            android:id="@+id/action_enterHeightFragment_to_selectPlanFragment"
+            app:destination="@id/selectPlanFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/selectPlanFragment"
+        android:name="com.example.nutrimeter.ui.auth.firstConfig.SelectPlanFragment"
+        tools:layout="@layout/auth_config_plan"
+        android:label="SelectPlanFragment" >
+        <action
+            android:id="@+id/action_selectPlanFragment_to_enterWeightFragment"
+            app:destination="@id/enterWeightFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_enter" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterAgeFragment"
+        android:name="com.example.nutrimeter.ui.auth.firstConfig.EnterAgeFragment"
+        tools:layout="@layout/auth_config_age"
+        android:label="EnterAgeFragment" >
+        <action
+            android:id="@+id/action_enterAgeFragment_to_enterHeightFragment"
+            app:destination="@id/enterHeightFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterWeightFragment"
+        android:name="com.example.nutrimeter.ui.auth.firstConfig.EnterWeightFragment"
+        tools:layout="@layout/auth_config_weight"
+        android:label="EnterWeightFragment" />
+
+</navigation>

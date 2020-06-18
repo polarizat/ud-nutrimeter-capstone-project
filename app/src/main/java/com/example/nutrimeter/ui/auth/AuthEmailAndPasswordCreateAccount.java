@@ -12,10 +12,9 @@ import androidx.navigation.Navigation;
 
 import com.example.nutrimeter.R;
 import com.example.nutrimeter.common.BaseFragment;
+import com.example.nutrimeter.data.model.User;
 import com.example.nutrimeter.databinding.AuthEmailAndPasswordCreateAccountBinding;
 import com.example.nutrimeter.util.DataValidation;
-
-import timber.log.Timber;
 
 public class AuthEmailAndPasswordCreateAccount extends BaseFragment {
 
@@ -25,14 +24,11 @@ public class AuthEmailAndPasswordCreateAccount extends BaseFragment {
     private String mName;
     private String mPassword;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = AuthEmailAndPasswordCreateAccountBinding.inflate(getLayoutInflater());
         viewModel = getViewModel(AuthViewModel.class, getActivity());
-        Timber.d("(polarizat) ---> AuthEmailAndPassword ----> onCreateView: %s",viewModel);
-
         setupListeners();
         return binding.getRoot();
     }
@@ -49,16 +45,16 @@ public class AuthEmailAndPasswordCreateAccount extends BaseFragment {
             mPassword = binding.authEpPasswordEt.getText().toString();
 
             if (DataValidation.isDataValid(DataValidation.DataType.NAME, mName)) {
-                binding.authEpNameIl.setError(null);
+                binding.authEpNameEt.setError(null);
                 if (DataValidation.isDataValid(DataValidation.DataType.PASSWORD, mPassword)){
                     viewModel.setName(mName);
                     viewModel.setPassword(mPassword);
                     viewModel.createAccount(getContext());
                 } else {
-                    binding.authEpPasswordIl.setError(getString(R.string.auth_error_password_invalid));
+                    binding.authEpPasswordEt.setError(getString(R.string.auth_error_password_invalid));
                 }
             } else {
-                binding.authEpNameIl.setError(getString(R.string.auth_error_name_empty));
+                binding.authEpNameEt.setError(getString(R.string.auth_error_name_empty));
             }
         });
 
@@ -77,16 +73,16 @@ public class AuthEmailAndPasswordCreateAccount extends BaseFragment {
                 case SUCCESS:
                     hideProgressBar();
                     viewModel.setUser(firebaseUserResourceAuth.data);
+                    viewModel.setAuthType(User.AuthType.PASSWORD_CREATE_ACCOUNT);
+
                     Navigation.findNavController(getView())
-                            .navigate(R.id.action_pop_out_of_auth);
+                            .navigate(R.id.action_global_navigation_auth_config);
                     break;
                 case ERROR:
                     Toast.makeText(getContext(), firebaseUserResourceAuth.message, Toast.LENGTH_SHORT).show();
                     hideProgressBar();
             }
         });
-
-
     }
 
     private void showProgressBar(){
@@ -95,5 +91,4 @@ public class AuthEmailAndPasswordCreateAccount extends BaseFragment {
     private void hideProgressBar(){
         binding.authPbEp.setVisibility(View.INVISIBLE);
     }
-
 }

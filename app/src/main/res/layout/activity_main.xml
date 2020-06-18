@@ -80,16 +80,16 @@
 
                 TAB LAYOUT ---v
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_56_view_DIM"
-                    android:elevation="8dp"
-                    android:visibility="gone"
-                    app:tabIndicatorColor="@color/colorSecondary"
-                    app:tabIndicatorHeight="2dp"
-                    app:tabSelectedTextColor="@color/colorSecondary"
-                    app:tabTextColor="@color/colorTextOnDark" />
+<!--                <com.google.android.material.tabs.TabLayout-->
+<!--                    android:id="@+id/tabLayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/dp_56_view_DIM"-->
+<!--                    android:elevation="8dp"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:tabIndicatorColor="@color/colorSecondary"-->
+<!--                    app:tabIndicatorHeight="2dp"-->
+<!--                    app:tabSelectedTextColor="@color/colorSecondary"-->
+<!--                    app:tabTextColor="@color/colorTextOnDark" />-->
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -98,8 +98,8 @@
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="?attr/actionBarSize"
                 app:defaultNavHost="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
 
-    app:startDestination="@id/nav_search_usda">
+    app:startDestination="@id/nav_diary">
 
 
 
@@ -14,9 +14,14 @@
         android:label="@string/drawer_menu_diary"
         tools:layout="@layout/fragment_diary" >
 
-        <action
-            android:id="@+id/action_nav_diary_to_auth_graph"
-            app:destination="@id/auth_graph" />
+         <action
+             android:id="@+id/action_nav_diary_to_auth_graph"
+             app:destination="@id/auth_graph"
+             app:enterAnim="@anim/fragment_open_enter"
+             app:exitAnim="@anim/fragment_open_exit"
+             app:launchSingleTop="true"
+             app:popUpTo="@id/nav_diary"
+             app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -27,13 +32,24 @@
         <action
             android:id="@+id/action_nav_my_food_to_nav_shopping_list"
             app:destination="@id/nav_shopping_list" />
+        <action
+            android:id="@+id/action_nav_my_food_to_auth_graph"
+            app:destination="@id/auth_graph"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_my_food" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_me"
         android:name="com.example.nutrimeter.ui.me.Me"
         android:label="@string/drawer_menu_me"
-        tools:layout="@layout/fragment_me" />
+        tools:layout="@layout/fragment_me" >
+        <action
+            android:id="@+id/action_nav_me_to_auth_graph"
+            app:destination="@id/auth_graph"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_me" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_shopping_list"
@@ -73,6 +89,12 @@
         android:name="com.example.nutrimeter.ui.food_detail.AddToBottomSheetFragment"
         tools:layout="@layout/dialog_add_to_bs_fragment"
         android:label="AddToBottomSheetFragment" />
+    <action
+        android:id="@+id/action_global_auth_graph"
+        app:destination="@id/auth_graph"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_navigation"
+        app:popUpToInclusive="true" />
 
 
 </navigation>

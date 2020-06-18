@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.nutrimeter.data.repo.AuthRepo;
+import com.example.nutrimeter.data.util.State;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -18,13 +19,19 @@ public class MainActivityViewModel extends ViewModel {
     private AuthRepo mAuthRepo;
 
     private MutableLiveData<FirebaseUser> mCurrentUserLiveData = new MutableLiveData<>();
-
+    private LiveData<State.AuthState> authenticationStateLiveData;
 
     @Inject
     public MainActivityViewModel(FirebaseAuth firebaseAuth, AuthRepo authRepo){
         mFirebaseAuth = firebaseAuth;
         mCurrentUserLiveData.setValue(firebaseAuth.getCurrentUser());
         mAuthRepo = authRepo;
+
+        authenticationStateLiveData = authRepo.getAuthenticationState();
+    }
+
+    public LiveData<State.AuthState> getAuthenticationStateLiveData() {
+        return authenticationStateLiveData;
     }
 
     public LiveData<FirebaseUser> getCurrentUserLiveData(){
@@ -32,14 +39,11 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public void logout(){
-        mFirebaseAuth.signOut();
-        mCurrentUserLiveData.setValue(mFirebaseAuth.getCurrentUser());
+        mAuthRepo.logout();
     }
 
     public void disconnectGoogleAccount(Context context){
         mAuthRepo.disconnectGoogleAccount(context);
     }
-
-
 
 }

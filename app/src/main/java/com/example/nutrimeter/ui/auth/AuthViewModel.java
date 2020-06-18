@@ -5,19 +5,22 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.nutrimeter.data.model.User;
 import com.example.nutrimeter.data.repo.AuthRepo;
+import com.example.nutrimeter.data.util.State;
 import com.google.firebase.auth.FirebaseUser;
 
 import javax.inject.Inject;
 
 public class AuthViewModel extends ViewModel {
 
-    private FirebaseUser user;
     private AuthRepo mAuthRepo;
 
-    private LiveData<ResourceAuth<FirebaseUser>> mAuthResultLiveData;
+    private LiveData<ResourceAuth<User>> mAuthResultLiveData;
     private LiveData<ResourceAuth<FirebaseUser>> mResetPasswordResultLiveData;
     private LiveData<ResourceAuth<FirebaseUser>> mHasAccountResultResultLiveData;
+
+    private User.AuthType authType;
 
     private String mName;
     private String mEmail;
@@ -31,12 +34,24 @@ public class AuthViewModel extends ViewModel {
         mHasAccountResultResultLiveData = authRepo.hasAccountResult();
     }
 
-    public FirebaseUser getUser() {
-        return user;
+    public LiveData<User> getUserLiveData() {
+        return mAuthRepo.getUserLiveData();
     }
 
-    public void setUser(FirebaseUser user) {
-        this.user = user;
+    public User getUser() {
+        return mAuthRepo.getUserLiveData().getValue();
+    }
+
+    public void setUser(User user) {
+        this.mAuthRepo.setUserLiveData(user);
+    }
+
+    public User.AuthType getAuthType() {
+        return authType;
+    }
+
+    public void setAuthType(User.AuthType authType) {
+        this.authType = authType;
     }
 
     public void createAccount(Context context){
@@ -62,7 +77,7 @@ public class AuthViewModel extends ViewModel {
         mAuthRepo.signInAnonymously();
     }
 
-    public LiveData<ResourceAuth<FirebaseUser>> getAuthResultLiveData(){
+    public LiveData<ResourceAuth<User>> getAuthResultLiveData(){
         return  mAuthResultLiveData;
     }
     public LiveData<ResourceAuth<FirebaseUser>> getResetPasswordResultLiveData(){
@@ -93,4 +108,11 @@ public class AuthViewModel extends ViewModel {
         mAuthRepo.sendPasswordResetEmail(mEmail);
     }
 
+    public void updateDatabaseWithUser() {
+        mAuthRepo.addOrUpdateUserToFirebase(authType);
+    }
+
+    public void setAuthenticationState(State.AuthState state) {
+        mAuthRepo.setAuthenticationState(state);
+    }
 }

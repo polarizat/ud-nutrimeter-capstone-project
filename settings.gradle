@@ -1,2 +1,3 @@
+include ':nutritionCalculatorJava'
 include ':app'
 rootProject.name = "NutriMeter"

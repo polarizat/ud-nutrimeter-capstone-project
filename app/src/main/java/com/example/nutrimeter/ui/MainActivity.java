@@ -4,16 +4,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -21,14 +16,13 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.nutrimeter.R;
 import com.example.nutrimeter.common.ViewModelProviderFactory;
 import com.example.nutrimeter.databinding.ActivityMainBinding;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class MainActivity extends DaggerAppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends DaggerAppCompatActivity {
     @Inject ViewModelProviderFactory providerFactory;
 
     MainActivityViewModel viewModel;
@@ -45,57 +39,60 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = new ViewModelProvider(this, providerFactory).get(MainActivityViewModel.class);
+        mNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        setupNavigation();
-//        NavController navController = NavHostFragment.findNavController(this);
-//        NavigationUI.setupWithNavController(toolbar, navController);
-        viewModel.getCurrentUserLiveData().observe(this, firebaseUser -> {
-            if (firebaseUser == null){
-                mNavController.navigate(R.id.auth_graph);
-
-            }
-        });
-
-        initNavigationDrawer();
-
+        if (savedInstanceState == null){
+            initNavigationDrawer();
+            setupNavigation();
+            viewModel.getAuthenticationStateLiveData().observe(this, authenticationState -> {
+                switch (authenticationState){
+                    case UNAUTHENTICATED: case INVALID_AUTHENTICATION:
+                        mNavController.navigate(R.id.action_global_auth_graph);
+                        break;
+                    case AUTHENTICATED: case AUTHENTICATED_GOOGLE:
+                        mNavController.navigate(R.id.main_navigation);
+                        break;
+                }
+            });
+        }
     }
 
+
+
     private void setupNavigation(){
-        mNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        mNavController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
-            @Override
-            public void onDestinationChanged(@NonNull NavController controller,
-                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                switch (destination.getParent().getId()) {
-                    case R.id.auth_graph:
-                        binding.toolbar.setVisibility(View.GONE);
-                        binding.fab.hide();
-                        break;
 
-                        //Toast.makeText(MainActivity.this, "NOW DO SOMETHING", Toast.LENGTH_SHORT).show();
-                    case R.id.main_navigation:
-                        binding.fab.show();
-                        binding.toolbar.setVisibility(View.VISIBLE);
-                        binding.logoAppBar.setVisibility(View.VISIBLE);
-                        initNavigationDrawer();
-                        break;
+        mNavController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            switch (destination.getParent().getId()){
+                case R.id.auth_graph:
+                    getSupportActionBar().hide();
+                    binding.toolbar.setVisibility(View.GONE);
+                    binding.fab.hide();
+                    break;
+                case R.id.main_navigation:
+                    binding.logoAppBar.setVisibility(View.VISIBLE);
+                    binding.toolbar.setVisibility(View.VISIBLE);
+                    getSupportActionBar().show();
+                    binding.fab.show();
+                    break;
+            }
 
-                    default:
-                        break;
-                }
-                switch (destination.getId()){
-                    case R.id.nav_search_usda:
-                        binding.searchSv.setVisibility(View.VISIBLE);
-                        binding.logoAppBar.setVisibility(View.INVISIBLE);
-                        //mMenu.findItem(R.id.action_search).setVisible(false); //TODO For debug only
-                        break;
-                    default: {
-                        binding.searchSv.setVisibility(View.GONE);
-
-                        break;
+            switch (destination.getId()){
+                case R.id.nav_search_usda:
+                    binding.searchSv.setVisibility(View.VISIBLE);
+                    binding.logoAppBar.setVisibility(View.INVISIBLE);
+                    mMenu.findItem(R.id.action_search).setVisible(false); //TODO For debug only
+                    break;
+                case R.id.foodDetail: case R.id.nav_my_food: case R.id.nav_diary: case R.id.nav_me:
+                case R.id.nav_shopping_list:
+                    binding.searchSv.setVisibility(View.GONE);
+                    binding.logoAppBar.setVisibility(View.VISIBLE);
+                    if (mMenu != null) {
+                        mMenu.findItem(R.id.action_search).setVisible(true);
                     }
-
+                default: {
+                    break;
                 }
+
             }
         });
     }
@@ -117,7 +114,6 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
             binding.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show());
 
-            //mNavigationView.setNavigationItemSelectedListener(this);
         }
     }
 
@@ -138,10 +134,12 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
             }
             case R.id.action_disconnect:{
                 viewModel.disconnectGoogleAccount(this);
-                mNavController.navigate(R.id.auth_graph);
             }
             case R.id.action_search: {
                 mNavController.navigate(R.id.nav_search_usda);
+            }
+            case R.id.action_test: {
+
             }
             default: {
                 break;
@@ -159,52 +157,23 @@ public class MainActivity extends DaggerAppCompatActivity implements NavigationV
                 || super.onSupportNavigateUp();
     }
 
+//    private void setupObservers() {
+//        viewModel.getAuthResultLiveData().observe(getViewLifecycleOwner(), firebaseUserResourceAuth -> {
+//            switch (firebaseUserResourceAuth.status){
+//                case SUCCESS:
+//                    Navigation.findNavController(getView()).navigate(R.id.action_pop_out_of_auth);
+//                    break;
+//                case ERROR:
+//                    Snackbar.make(getView(), "Google sign in failed! Try again!", Snackbar.LENGTH_LONG ).show();
+//                    Navigation.findNavController(getView()).navigate(R.id.nav_auth);
+//                    break;
+//                case LOADING:
+//                case DEFAULT:
+//                    break;
+//            }
+//        });
+//    }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.nav_diary:{
-
-                Navigation.findNavController(this, R.id.nav_host_fragment)
-                        .navigate(R.id.nav_diary);
-
-                Toast.makeText(this, "DIARY", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.nav_my_food:{
-                NavOptions navOptions = new NavOptions.Builder()
-                        .setPopUpTo(R.id.nav_diary, true)
-                        .build();
-
-                Navigation.findNavController(this, R.id.nav_host_fragment)
-                        .navigate(R.id.nav_my_food, null, navOptions);
-
-                Toast.makeText(this, "MY FOOD", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.nav_me: {
-
-                Navigation.findNavController(this, R.id.nav_host_fragment)
-                        .navigate(R.id.nav_me);
-
-                Toast.makeText(this, "ME", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.nav_shopping_list : {
-
-                Navigation.findNavController(this, R.id.nav_host_fragment)
-                        .navigate(R.id.nav_shopping_list);
-
-                Toast.makeText(this, "SHOPPING LIST", Toast.LENGTH_SHORT).show();
-                break;
-            }
-
-        }
-        item.setChecked(true);
-        binding.drawerLayout.closeDrawer(GravityCompat.START);
-
-        return true;
-    }
 
 }

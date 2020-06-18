@@ -1,7 +1,6 @@
 package com.example.nutrimeter.di.module;
 
 import com.example.nutrimeter.util.UsdaUtils;
-import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Singleton;
 
@@ -17,13 +16,9 @@ public class AppModule  {
     // Here I put all application dependecies for the project
     // LIKE Retrofit, Picasso, anything that is gonna exist
 
-
-    @Singleton
-    @Provides
-    static FirebaseAuth provideFirebaseAuth(){
-        return FirebaseAuth.getInstance();
-    }
-
+    // @Provides tell Dagger how to create instances of the type that this function
+    // returns (i.e. LoginRetrofitService).
+    // Function parameters are the dependencies of this type.
     @Singleton
     @Provides
     static Retrofit provideRetrofitInstance(){
@@ -33,7 +28,5 @@ public class AppModule  {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
-
 
 }

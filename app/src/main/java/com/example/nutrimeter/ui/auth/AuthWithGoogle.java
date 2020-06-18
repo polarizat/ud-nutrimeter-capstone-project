@@ -2,7 +2,6 @@ package com.example.nutrimeter.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import androidx.navigation.Navigation;
 
 import com.example.nutrimeter.R;
 import com.example.nutrimeter.common.BaseFragment;
+import com.example.nutrimeter.data.model.User;
+import com.example.nutrimeter.data.util.State;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -18,7 +19,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 
 import timber.log.Timber;
 
@@ -35,8 +35,11 @@ public class AuthWithGoogle extends BaseFragment {
                              Bundle savedInstanceState) {
         viewModel = getViewModel(AuthViewModel.class, getActivity());
 
-        signIn();
         setupObservers();
+
+        if (savedInstanceState == null){
+            signIn();
+        }
 
         return inflater.inflate(R.layout.auth_with_google_fragmet, container, false);
     }
@@ -56,11 +59,17 @@ public class AuthWithGoogle extends BaseFragment {
         viewModel.getAuthResultLiveData().observe(getViewLifecycleOwner(), firebaseUserResourceAuth -> {
             switch (firebaseUserResourceAuth.status){
                 case SUCCESS:
-                    Navigation.findNavController(getView()).navigate(R.id.action_pop_out_of_auth);
+                    viewModel.setAuthType(User.AuthType.GOOGLE);
+                    viewModel.updateDatabaseWithUser();
+                    break;
+                case SUCCESS_NEED_CONFIG:
+                    viewModel.setAuthType(User.AuthType.GOOGLE);
+                    Navigation.findNavController(getView())
+                            .navigate(R.id.action_global_navigation_auth_config);
                     break;
                 case ERROR:
                     Snackbar.make(getView(), "Google sign in failed! Try again!", Snackbar.LENGTH_LONG ).show();
-                    Navigation.findNavController(getView()).navigate(R.id.action_authWithGoogle_to_nav_auth);
+                    viewModel.setAuthenticationState(State.AuthState.INVALID_AUTHENTICATION);
                     break;
                 case LOADING:
                 case DEFAULT:
@@ -78,7 +87,12 @@ public class AuthWithGoogle extends BaseFragment {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 String idToken = task.getResult(ApiException.class).getIdToken();
-                viewModel.firebaseAuthWithGoogle(idToken);
+                if (idToken != null) {
+                    viewModel = getViewModel(AuthViewModel.class, getActivity());
+                    viewModel.firebaseAuthWithGoogle(idToken);
+                } else {
+                    Snackbar.make(getView(), "Google sign in failed! Try again!", Snackbar.LENGTH_LONG ).show();
+                }
 
             } catch (ApiException e) {
                 Timber.w(e, "Google sign in failed"); //This case is handle with observer

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="measureUnits"
+            type="String" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_auth_email_and_password"
+            tools:context=".ui.auth.FirstConfig">
+
+            <TextView
+                android:id="@+id/auth_config_weight_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="116dp"
+                android:text="@string/auth_config_weight_label"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_24_text_H5"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/auth_config_current_weight_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:text="@string/auth_config_current_weight_label"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_16_text_Subtitle1"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextCurrentWeight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/editTextCurrentWeight" />
+
+            <TextView
+                android:id="@+id/currentWeightMeasure"
+                android:layout_width="@dimen/dp_96_view_DIM"
+                style="@style/MeasureLabelTextView"
+
+                android:text="@{measureUnits}"
+
+                app:layout_constraintBottom_toBottomOf="@+id/editTextCurrentWeight"
+                app:layout_constraintStart_toStartOf="@+id/editTextCurrentWeight"
+                app:layout_constraintTop_toTopOf="@+id/editTextCurrentWeight"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <EditText
+                android:id="@+id/editTextCurrentWeight"
+                android:layout_width="@dimen/dp_104_view_DIM"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:autofillHints="@string/height_centimeters"
+                android:background="@drawable/box_white_accent_border_radius16"
+                android:drawableTint="@color/colorAccent"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/hint_weight"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:padding="8dp"
+                android:paddingStart="@dimen/dp_8_MARGIN"
+                android:paddingEnd="@dimen/dp_8_MARGIN"
+                android:text=""
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_16_text_Body1"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.221"
+                app:layout_constraintStart_toEndOf="@+id/auth_config_current_weight_label"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+            <TextView
+                android:id="@+id/auth_config_goal_weight_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:text="@string/auth_config_goal_weight_label"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_16_text_Subtitle1"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/auth_config_goalWeight_et"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/auth_config_goalWeight_et" />
+
+            <TextView
+                android:id="@+id/auth_config_goalWeight_units"
+                style="@style/MeasureLabelTextView"
+                android:layout_width="@dimen/dp_96_view_DIM"
+
+                android:text="@{measureUnits}"
+
+                app:layout_constraintBottom_toBottomOf="@+id/auth_config_goalWeight_et"
+                app:layout_constraintEnd_toEndOf="@+id/currentWeightMeasure"
+                app:layout_constraintHorizontal_bias="0.964"
+                app:layout_constraintStart_toStartOf="@+id/auth_config_goalWeight_et"
+                app:layout_constraintTop_toTopOf="@+id/auth_config_goalWeight_et"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <EditText
+                android:id="@+id/auth_config_goalWeight_et"
+                android:layout_width="@dimen/dp_104_view_DIM"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:autofillHints="@string/height_centimeters"
+                android:background="@drawable/box_white_accent_border_radius16"
+                android:drawableTint="@color/colorAccent"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/hint_weight"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:padding="8dp"
+                android:paddingStart="@dimen/dp_8_MARGIN"
+                android:paddingEnd="@dimen/dp_8_MARGIN"
+                android:text=""
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_16_text_Body1"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.201"
+                app:layout_constraintStart_toEndOf="@+id/auth_config_current_weight_label"
+                app:layout_constraintTop_toBottomOf="@+id/editTextCurrentWeight" />
+
+
+            <Button
+                android:id="@+id/auth_config_weight_finish_btn"
+                android:layout_width="@dimen/dp_180_view_DIM"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="72dp"
+                android:background="@drawable/box_accent_borderless_radius16"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/auth_config_weight_finish_btn"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/auth_config_weight_bottom_nav_indicators"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/auth_config_goal_weight_label"
+                app:layout_constraintVertical_bias="0.916" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/auth_config_weight_label">
+
+                <RadioButton
+                    android:id="@+id/radioButton_metric"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/measure_system_metric" />
+
+                <RadioButton
+                    android:id="@+id/radioButton_imperial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/measure_system_imperial" />
+            </RadioGroup>
+
+            <include
+                android:id="@+id/auth_config_weight_bottom_nav_indicators"
+                layout="@layout/auth_bottom_nav_indicator_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                app:activeView="@{5}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

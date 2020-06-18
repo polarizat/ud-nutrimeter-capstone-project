@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.nutrimeter.ui.MainActivityViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:background="@drawable/gradient_auth_email_and_password">
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_logo_auth"-->
+<!--                android:layout_width="248dp"-->
+<!--                android:layout_height="72dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="112dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.496"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:srcCompat="@drawable/ic_logo2" />-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/auth_ep_title"-->
+<!--                style="@style/TextStyle.Nutrimeter.Headline5"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="Sign up,"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/iv_logo_auth" />-->
+
+<!--            -&#45;&#45; Subtitle -&#45;&#45;-->
+<!--            <TextView-->
+<!--                android:id="@+id/auth_ep_subtitle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingBottom="32dp"-->
+<!--                android:textColor="@color/colorSecondary"-->
+<!--                android:text="using email address"-->
+<!--                android:textSize="16dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/auth_ep_title" />-->
+
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/auth_ep_name_il"-->
+<!--                style="@style/Widget.NutriMeter.Auth.TextInputLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/auth_ep_subtitle">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/auth_ep_name_et"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:ems="10"-->
+<!--                    android:hint="Your name"-->
+<!--                    android:inputType="textPersonName"-->
+<!--                    android:paddingStart="24dp"-->
+<!--                    android:paddingEnd="24dp" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+<!--            -&#45;&#45; PASSWORD -&#45;&#45;-->
+
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/auth_ep_password_il"-->
+<!--                style="@style/Widget.NutriMeter.Auth.TextInputLayout"-->
+
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:errorEnabled="true"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/auth_ep_name_il"-->
+<!--                app:passwordToggleEnabled="true">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/auth_ep_password_et"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:ems="10"-->
+<!--                    android:hint="Password"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:paddingStart="24dp"-->
+<!--                    android:paddingEnd="24dp" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/auth_divider"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+
+<!--                android:background="@color/colorSecondary"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.498"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/auth_ep_password_il"-->
+<!--                app:srcCompat="@drawable/ic_divider_24dp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_auth_ep_create_account"-->
+<!--                style="@style/Button.Nutrimiter"-->
+<!--                android:layout_width="match_parent"-->
+
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="32dp"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:layout_marginEnd="32dp"-->
+<!--                android:text="CREATE ACCOUNT"-->
+<!--                android:textAllCaps="true"-->
+<!--                app:backgroundTint="@color/colorAccent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/auth_divider" />-->
+
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/auth_pb_ep"-->
+<!--                style="?android:attr/progressBarStyle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:visibility="gone"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/auth_ep_continueOther"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/btn_auth_ep_create_account" />-->
+
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/auth_ep_continueOther"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="32dp"-->
+<!--                android:layout_marginEnd="32dp"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:paddingTop="16dp"-->
+<!--                android:paddingBottom="32dp"-->
+<!--                android:visibility="visible"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/btn_auth_ep_create_account"-->
+<!--                app:layout_constraintVertical_bias="1.0">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Continue using"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="4dp"-->
+<!--                    android:layout_marginEnd="8dp"-->
+<!--                    android:paddingTop="12dp"-->
+<!--                    android:paddingBottom="12dp"-->
+<!--                    android:text="other method."-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.396"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/tv_txt_signUp_to_login" />-->
+<!--            </LinearLayout>-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

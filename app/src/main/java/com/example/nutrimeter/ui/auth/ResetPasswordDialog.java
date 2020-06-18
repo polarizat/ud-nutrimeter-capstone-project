@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nutrimeter.R;
 import com.example.nutrimeter.common.ViewModelProviderFactory;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import javax.inject.Inject;
 
@@ -23,14 +22,12 @@ public class ResetPasswordDialog extends DialogFragment {
     @Inject
     ViewModelProviderFactory providerFactory;
 
-    private TextInputEditText mEmailField;
-    private TextInputLayout mEmailLayout;
+    private EditText mEmailField;
     private String mUserEmail;
 
     Button sendBtn;
 
     public ResetPasswordDialog() { }
-
 
     // Defines the listener interface
     public interface PasswordResetDialogListener {
@@ -49,7 +46,6 @@ public class ResetPasswordDialog extends DialogFragment {
         super.onResume();
 
         // Show soft keyboard automatically and request focus to field
-        mEmailLayout = getDialog().findViewById(R.id.textInputLayout_signIn_restartPassword_email);
         mEmailField = getDialog().findViewById(R.id.textInputEditText_signIn_restartPassword_email);
         mUserEmail = ResetPasswordDialogArgs.fromBundle(getArguments()).getEmail();
         mEmailField.setText(mUserEmail);
@@ -72,18 +68,17 @@ public class ResetPasswordDialog extends DialogFragment {
 
         String email = mEmailField.getText().toString();
         if (email.isEmpty()) {
-            mEmailLayout.setError(getString(R.string.auth_error_email_empty));
+            mEmailField.setError(getString(R.string.auth_error_email_empty));
             isValid = false;
         } else {
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                mEmailLayout.setError(getString(R.string.auth_error_email_invalid));
+                mEmailField.setError(getString(R.string.auth_error_email_invalid));
                 isValid = false;
             } else {
-                mEmailLayout.setError(null);
+                mEmailField.setError(null);
                 isValid = true;
             }
         }
         return isValid;
     }
-
 }

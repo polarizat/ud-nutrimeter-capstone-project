@@ -1,8 +1,10 @@
-package com.example.nutrimeter.di.module;
+package com.example.nutrimeter.di.module.main;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.nutrimeter.di.ViewModelKey;
+import com.example.nutrimeter.ui.MainActivityViewModel;
+import com.example.nutrimeter.ui.auth.AuthViewModel;
 import com.example.nutrimeter.ui.diary.DiaryViewModel;
 import com.example.nutrimeter.ui.food_detail.FoodDetailViewModel;
 import com.example.nutrimeter.ui.me.MeViewModel;
@@ -15,8 +17,17 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 
 @Module
-public abstract class ViewModelBuildersModule {
+public abstract class MainViewModelBuildersModule {
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel.class)
+    public abstract ViewModel bindMainViewModel(MainActivityViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthViewModel.class)
+    public abstract ViewModel bindAuthViewModel(AuthViewModel viewModel);
 
     @Binds
     @IntoMap

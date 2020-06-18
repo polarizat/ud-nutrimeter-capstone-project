@@ -6,6 +6,11 @@ import com.example.nutrimeter.ui.auth.AuthEmailAndPassword;
 import com.example.nutrimeter.ui.auth.AuthEmailAndPasswordCreateAccount;
 import com.example.nutrimeter.ui.auth.AuthEmailAndPasswordLogin;
 import com.example.nutrimeter.ui.auth.AuthWithGoogle;
+import com.example.nutrimeter.ui.auth.firstConfig.EnterAgeFragment;
+import com.example.nutrimeter.ui.auth.firstConfig.EnterHeightFragment;
+import com.example.nutrimeter.ui.auth.firstConfig.EnterWeightFragment;
+import com.example.nutrimeter.ui.auth.firstConfig.SelectGenderFragment;
+import com.example.nutrimeter.ui.auth.firstConfig.SelectPlanFragment;
 import com.example.nutrimeter.ui.diary.Diary;
 import com.example.nutrimeter.ui.food_detail.FoodDetail;
 import com.example.nutrimeter.ui.me.Me;
@@ -31,6 +36,13 @@ public abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector abstract AuthWithGoogle contributeAuthWithGoogle();
     @ContributesAndroidInjector abstract AuthAnonymous contributeAuthAnonymous();
+
+    /*AUTH  --- CONFIG*/
+    @ContributesAndroidInjector abstract EnterAgeFragment contributeEnterAgeFragment();
+    @ContributesAndroidInjector abstract EnterHeightFragment contributeEnterHeightFragment();
+    @ContributesAndroidInjector abstract EnterWeightFragment contributeEnterWeightFragment();
+    @ContributesAndroidInjector abstract SelectGenderFragment contributeSelectGenderFragment();
+    @ContributesAndroidInjector abstract SelectPlanFragment contributeSelectPlanFragment();
 
 
     /*SEARCH*/

@@ -1,18 +1,22 @@
 package com.example.nutrimeter.data.model.usda.search;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class FoodSearchCriteria {
 
     private String query;
-    private String[] dataType;
+    private List<String> dataType;
     private int pageSize;
     private int pageNumber;
     private int sortBy;
     private String sortOrder;
     private String brandOwner;
 
-    public FoodSearchCriteria(String query, String[] dataType, int pageSize, int pageNumber, int sortBy, String sortOrder, String brandOwner) {
+    public FoodSearchCriteria(){
+
+    }
+
+    public FoodSearchCriteria(String query, List<String> dataType, int pageSize, int pageNumber, int sortBy, String sortOrder, String brandOwner) {
         this.query = query;
         this.dataType = dataType;
         this.pageSize = pageSize;
@@ -26,7 +30,7 @@ public class FoodSearchCriteria {
         return query;
     }
 
-    public String[] getDataType() {
+    public List<String> getDataType() {
         return dataType;
     }
 
@@ -54,7 +58,6 @@ public class FoodSearchCriteria {
     public String toString() {
         return "FoodSearchCriteria{" +
                 "query='" + query + '\'' +
-                ", dataType=" + Arrays.toString(dataType) +
                 ", pageSize=" + pageSize +
                 ", pageNumber=" + pageNumber +
                 ", sortBy=" + sortBy +

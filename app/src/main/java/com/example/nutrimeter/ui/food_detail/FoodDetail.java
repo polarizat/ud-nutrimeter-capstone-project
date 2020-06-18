@@ -44,24 +44,6 @@ public class FoodDetail extends BaseFragment {
         return binding.getRoot();
     }
 
-//    private void setupQuantityEditText() {
-//        binding.editTextQuantity.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                if (!s.toString().isEmpty()) currentQuantity = Float.parseFloat(s.toString());
-//
-//            }
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            }
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                if (!s.toString().equals("")) viewModel.updateQuantity(Float.parseFloat(s.toString()));
-//                else viewModel.updateQuantity(currentQuantity);
-//            }
-//        });
-//    }
-
     private void setupQuantityEditText() {
         binding.editTextQuantity.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -69,6 +51,7 @@ public class FoodDetail extends BaseFragment {
                 if (!newQuantity.equals("")) viewModel.updateQuantity(Float.parseFloat(newQuantity));
                 else viewModel.updateQuantity(currentQuantity);
             }
+            binding.editTextQuantity.clearFocus();
             return false;
         });
     }
@@ -162,10 +145,10 @@ public class FoodDetail extends BaseFragment {
     private void updateDetailsWithQuantity(float quantity){
         setupPieChart(quantity);
 
-        mMineralsAdapter.updateQuantity(quantity);
-        mVitaminsAdapter.updateQuantity(quantity);
-        miscellaneousAdapter.updateQuantity(quantity);
-        phytonutrientsAdapter.updateQuantity(quantity);
+        if (mMineralsAdapter != null) mMineralsAdapter.updateQuantity(quantity);
+        if (mVitaminsAdapter != null) mVitaminsAdapter.updateQuantity(quantity);
+        if (miscellaneousAdapter != null) miscellaneousAdapter.updateQuantity(quantity);
+        if (phytonutrientsAdapter != null) phytonutrientsAdapter.updateQuantity(quantity);
 
     }
 
@@ -178,7 +161,6 @@ public class FoodDetail extends BaseFragment {
         s.setSpan(new RelativeSizeSpan(1.7f), 0, df.format(macro).length()+1, 0);
         return s;
     }
-
 
 
     @Override

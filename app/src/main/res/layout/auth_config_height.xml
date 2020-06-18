@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_auth_email_and_password"
+            tools:context=".ui.auth.FirstConfig">
+
+            <TextView
+                android:id="@+id/auth_config_height_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="136dp"
+                android:text="@string/auth_config_height_label"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_24_text_H5"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/auth_config_height_label">
+
+                <RadioButton
+                    android:id="@+id/radioButton_metric"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/radio_btn_metric" />
+                <RadioButton
+                    android:id="@+id/radioButton_imperial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/radio_btn_imperial" />
+            </RadioGroup>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/auth_config_height_metric_group"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="heightMeasureCm,editTextHeightCm" />
+
+            <TextView
+                android:id="@+id/heightMeasureCm"
+                style="@style/MeasureLabelTextView"
+
+                android:text="@string/height_centimeters"
+                android:visibility="visible"
+
+                app:layout_constraintBottom_toBottomOf="@+id/editTextHeightCm"
+                app:layout_constraintStart_toStartOf="@+id/editTextHeightCm"
+                app:layout_constraintTop_toTopOf="@+id/editTextHeightCm" />
+
+            <EditText
+                android:id="@+id/editTextHeightCm"
+                style="@style/MeasureEditText"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/box_white_accent_border_radius16"
+
+                android:visibility="visible"
+
+                android:autofillHints="@string/height_centimeters"
+                android:hint="@string/height_centimeters"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/auth_config_height_imperial_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:constraint_referenced_ids="editTextHeightFeet,editTextHeightInches,heightMeasureImperialInches,heightMeasureImperial" />
+
+            <TextView
+                android:id="@+id/heightMeasureImperial"
+                style="@style/MeasureLabelTextView"
+
+                android:visibility="invisible"
+
+                android:text="@string/height_inches"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextHeightFeet"
+                app:layout_constraintStart_toStartOf="@+id/editTextHeightFeet"
+                app:layout_constraintTop_toTopOf="@+id/editTextHeightFeet" />
+
+            <EditText
+                android:id="@+id/editTextHeightFeet"
+                android:layout_marginTop="16dp"
+                style="@style/MeasureEditText"
+                android:visibility="invisible"
+                android:background="@drawable/box_white_accent_border_radius16"
+
+                android:autofillHints="@string/height_feet"
+                android:hint="@string/height_feet"
+                app:layout_constraintStart_toStartOf="@+id/editTextHeightInches"
+                app:layout_constraintTop_toBottomOf="@+id/editTextHeightInches" />
+
+            <TextView
+                android:id="@+id/heightMeasureImperialInches"
+                style="@style/MeasureLabelTextView"
+                android:layout_marginStart="60dp"
+
+                android:visibility="invisible"
+
+                android:text="@string/height_feet"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextHeightInches"
+                app:layout_constraintEnd_toEndOf="@+id/heightMeasureImperial"
+                app:layout_constraintStart_toStartOf="@+id/editTextHeightInches"
+                app:layout_constraintTop_toTopOf="@+id/editTextHeightInches" />
+
+            <EditText
+                android:id="@+id/editTextHeightInches"
+                style="@style/MeasureEditText"
+                android:layout_marginTop="32dp"
+                android:autofillHints="@string/height_inches"
+
+                android:background="@drawable/box_white_accent_border_radius16"
+                android:hint="@string/height_inches"
+                android:visibility="invisible"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+            <Button
+                android:id="@+id/auth_config_height_next_btn"
+                android:layout_width="@dimen/dp_180_view_DIM"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="72dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/auth_config_height_btn_next"
+                android:background="@drawable/box_accent_borderless_radius16"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/auth_config_height_bottom_nav_indicators"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heightMeasureImperial" />
+
+            <include
+                android:id="@+id/auth_config_height_bottom_nav_indicators"
+                layout="@layout/auth_bottom_nav_indicator_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                app:activeView="@{3}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,52 +1,61 @@
 package com.example.nutrimeter.util;
 
-import com.example.nutrimeter.R;
-
 public class DataValidation {
+
+    public enum DataType {
+        EMAIL,
+        PASSWORD,
+        NAME,
+        WEIGHT_METRIC,
+        WEIGHT_IMPERIAL,
+        HEIGHT_METRIC,
+        HEIGHT_IMPERIAL_FEET,
+        HEIGHT_IMPERIAL_INCHES,
+        AGE
+    }
 
     public static boolean isDataValid (DataType type, String data) {
         switch (type){
             case EMAIL:
-                if (data.isEmpty()) {
-                    //TODO
-                    return false;
-                } else {
-                    if (!android.util.Patterns.EMAIL_ADDRESS.matcher(data).matches()) {
-                        //TODO
-                        return false;
-                    } else {
-                        //TODO
-                        return true;
-                    }
-                }
+                return !data.isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(data).matches();
             case PASSWORD:
                 if (data.isEmpty()) {
-                    //            passwordLayout.setError(getString(R.string.sign_in_error_password_empty));
                     return false;
                 } else {
-                    if (data.length() < 6) {
-                        //                passwordLayout.setError(getString(R.string.sign_in_error_password_invalid));
-                        return false;
-                    } else {
-                        //                passwordLayout.setError(null);
-                        return true;
-                    }
+                    return data.length() >= 6;
                 }
 
             case NAME:
-                if (data.isEmpty()){
-                    //             nameLayout.setError(getString(R.string.sign_in_error_name_empty));
-                    return false;
-                } else {
-                    //            nameLayout.setError(null);
-                    return  true;
-                }
+                return !data.isEmpty();
+
+            case WEIGHT_METRIC:
+                return (data != null && !data.isEmpty() && Float.parseFloat(data) >= 20f
+                                     && Float.parseFloat(data) <= 500f);
+
+            case WEIGHT_IMPERIAL:
+                return (data != null && !data.isEmpty() && Float.parseFloat(data) >= 50f
+                                     && Float.parseFloat(data) <= 1000f);
+
+            case HEIGHT_METRIC:
+                return (data != null && !data.isEmpty() && Float.parseFloat(data) >= 40f
+                                     && Float.parseFloat(data) <= 300f);
+
+            case HEIGHT_IMPERIAL_FEET:
+                return (data != null && !data.isEmpty() && Float.parseFloat(data) >= 1f
+                                     && Float.parseFloat(data) <= 10f);
+
+            case HEIGHT_IMPERIAL_INCHES:
+                return (data != null && !data.isEmpty() && Float.parseFloat(data) >= 0f
+                                     && Float.parseFloat(data) <= 12f);
+
+            case AGE:
+                return (data != null && !data.isEmpty() && Integer.parseInt(data) >= 13
+                                     && Integer.parseInt(data) <= 120);
+
             default:
                 return false;
         }
     }
 
 
-
-    public enum DataType { EMAIL, PASSWORD, NAME}
 }

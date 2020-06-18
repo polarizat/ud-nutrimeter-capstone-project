@@ -42,5 +42,5 @@ public class ResourceAuth<T> {
         return new Resource<>(Resource.Status.LOADING, data, null);
     }
 
-    public enum Status { SUCCESS, ERROR, LOADING, DEFAULT}
+    public enum Status { SUCCESS, SUCCESS_NEED_CONFIG, ERROR, LOADING, DEFAULT}
 }

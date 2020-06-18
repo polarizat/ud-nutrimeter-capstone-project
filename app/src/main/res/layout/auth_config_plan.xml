@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_auth_email_and_password"
+            tools:context=".ui.auth.FirstConfig">
+
+
+            <TextView
+                android:id="@+id/auth_config_plan_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="136dp"
+                android:text="@string/auth_config_plan_label"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp_24_text_H5"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/auth_config_plan_loseWeight_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/box_accent_borderless_radius16"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/auth_config_plan_loseWeight"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toTopOf="@+id/auth_config_plan_maintainWeight_btn"
+                app:layout_constraintEnd_toEndOf="@+id/auth_config_plan_maintainWeight_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/auth_config_plan_maintainWeight_btn" />
+
+            <Button
+                android:id="@+id/auth_config_plan_maintainWeight_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/auth_config_plan_maintainWeight_btn"
+                android:textAllCaps="false"
+                android:background="@drawable/box_accent_borderless_radius16"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/auth_config_plan_bottom_nav_indicators"
+                app:layout_constraintEnd_toEndOf="@+id/auth_config_plan_label"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/auth_config_plan_label"
+                app:layout_constraintTop_toBottomOf="@+id/auth_config_plan_label"
+                app:layout_constraintVertical_bias="0.407" />
+
+            <Button
+                android:id="@+id/auth_config_plan_gainWeight_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:background="@drawable/box_accent_borderless_radius16"
+                android:textColor="@color/white"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/auth_config_plan_gainWeight_btn"
+                app:layout_constraintEnd_toEndOf="@+id/auth_config_plan_maintainWeight_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/auth_config_plan_maintainWeight_btn"
+                app:layout_constraintTop_toBottomOf="@+id/auth_config_plan_maintainWeight_btn" />
+
+            <include
+                android:id="@+id/auth_config_plan_bottom_nav_indicators"
+                layout="@layout/auth_bottom_nav_indicator_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                app:activeView="@{4}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

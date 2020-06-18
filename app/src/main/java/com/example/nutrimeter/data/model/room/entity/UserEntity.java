@@ -1,6 +1,7 @@
 package com.example.nutrimeter.data.model.room.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = UserEntity.TABLE_NAME)
@@ -25,6 +26,10 @@ public class UserEntity {
 
     private String accountCreatedAt;
     private String lastSignIn;
+
+    @Ignore
+    public UserEntity(){
+    }
 
     public UserEntity(int userId, String firstName, String lastName, String fullName, String email, String photoUrl, String authProviders, String country, int age, float height, float currentWeight, float gender, String accountCreatedAt, String lastSignIn) {
         this.userId = userId;

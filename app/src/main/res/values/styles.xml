@@ -1,6 +1,8 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -98,6 +100,19 @@
         <item name="android:layout_marginStart">32dp</item>
         <item name="android:layout_marginEnd">32dp</item>
     </style>
+
+    <style name="EditTextAuth">
+        <item name="hintTextAppearance">@style/TextAppearance.NutriMeter.TextInputLayout.HintText</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
     --- Hint ---
 
     <style name="TextAppearance.NutriMeter.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
@@ -132,11 +147,41 @@
     </style>
 
     <style name="LayoutHorizontalProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">@dimen/hpb_height</item>
+
         <item name="android:layout_marginTop">@dimen/dp_8_MARGIN</item>
     </style>
 
+    <style name="BottomNavigationAuthConfigItem">
+        <item name="android:layout_width">8dp</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="background">@drawable/oval</item>
+    </style>
+
     <style name="ActionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar"> <item name="colorControlNormal">@color/colorPrimary</item> </style>
+
+
+    <style name="MeasureEditText">
+        <item name="android:layout_width">@dimen/dp_104_view_DIM</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:inputType">number</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/sp_16_text_Body1</item>
+    </style>
+
+    <style name="MeasureLabelTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginStart">72dp</item>
+        <item name="android:background">@drawable/box_accent_borderless_radius16</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">48dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textColor">@color/colorTextOnDark</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 
 </resources>

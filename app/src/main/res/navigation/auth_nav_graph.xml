@@ -20,10 +20,12 @@
             app:destination="@id/authEmailAndPassword" />
         <action
             android:id="@+id/action_nav_auth_to_authWithGoogle"
-            app:destination="@id/authWithGoogle" />
+            app:destination="@id/authWithGoogle"
+            app:launchSingleTop="true" />
         <action
             android:id="@+id/action_nav_auth_to_authAnonymous"
-            app:destination="@id/authAnonymous" />
+            app:destination="@id/authAnonymous"
+            app:launchSingleTop="true" />
 
     </fragment>
 
@@ -116,5 +118,13 @@
 
 
     </dialog>
+    <include app:graph="@navigation/auth_first_config_nav_graph" />
+    <action
+        android:id="@+id/action_global_navigation_auth_config"
+        app:destination="@id/navigation_auth_config"
+        app:popUpTo="@id/nav_auth"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true" />
+
 
 </navigation>

@@ -8,17 +8,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import com.example.nutrimeter.R;
 import com.example.nutrimeter.common.BaseFragment;
+import com.example.nutrimeter.data.model.User;
 import com.example.nutrimeter.databinding.AuthEmailAndPasswordLoginBinding;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseUser;
-
-import timber.log.Timber;
 
 public class AuthEmailAndPasswordLogin extends BaseFragment {
 
@@ -30,8 +26,6 @@ public class AuthEmailAndPasswordLogin extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = AuthEmailAndPasswordLoginBinding.inflate(getLayoutInflater());
         viewModel = getViewModel(AuthViewModel.class, getActivity());
-        Timber.d("(polarizat) ---> AuthEmailAndPassword ----> onCreateView: %s",viewModel);
-
         setupListeners();
         return binding.getRoot();
     }
@@ -65,8 +59,11 @@ public class AuthEmailAndPasswordLogin extends BaseFragment {
                 case SUCCESS:
                     hideProgressBar();
                     viewModel.setUser(firebaseUserResourceAuth.data);
-                    Navigation.findNavController(getView())
-                            .navigate(R.id.action_pop_out_of_auth);
+                    viewModel.setAuthType(User.AuthType.PASSWORD_LOGIN);
+                    viewModel.updateDatabaseWithUser();
+
+//                    Navigation.findNavController(getView())
+//                            .navigate(R.id.action_pop_out_of_auth);
                     break;
                 case ERROR:
                     Toast.makeText(getContext(), firebaseUserResourceAuth.message, Toast.LENGTH_SHORT).show();
